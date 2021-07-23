@@ -58,6 +58,8 @@ public:
 	static const FName MoveRightBinding;
 	static const FName FireForwardBinding;
 	static const FName FireRightBinding;
+	float ForwardValue;
+	float RightValue;
 
 private:
 

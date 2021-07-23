@@ -66,8 +66,8 @@ void AJBJ_InvectorPawn::SetupPlayerInputComponent(class UInputComponent* PlayerI
 void AJBJ_InvectorPawn::Tick(float DeltaSeconds)
 {
 	// Find movement direction
-	const float ForwardValue = GetInputAxisValue(MoveForwardBinding);
-	const float RightValue = GetInputAxisValue(MoveRightBinding);
+	ForwardValue = GetInputAxisValue(MoveForwardBinding);
+	RightValue = GetInputAxisValue(MoveRightBinding);
 
 	// Clamp max size so that (X=1, Y=1) doesn't cause faster movement in diagonal directions
 	const FVector MoveDirection = FVector(ForwardValue, RightValue, 0.f).GetClampedToMaxSize(1.0f);
