@@ -26,6 +26,8 @@ AJBJPlayer::AJBJPlayer()
 	// 메시 컴포넌트 등록
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
 	bodyMesh->SetupAttachment(camera);
+	bodyMesh->SetRelativeLocation(FVector(647.443542, 0.000000, -122.214050));
+	bodyMesh->SetRelativeRotation(FRotator(19.999989, 0.000000, 0.000000));
 
 	// Actor 를 이루는 컴포넌트를 붙이도록 한다.
 	playerMove = CreateDefaultSubobject<UPlayerMove>(TEXT("PlayerMove"));
