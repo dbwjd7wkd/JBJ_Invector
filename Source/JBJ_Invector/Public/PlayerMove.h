@@ -28,8 +28,8 @@ public:
 
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 
-	void Horizontal(float value);
-	void Vertical(float value);
+	void MoveForward(float value);
+	void MoveRight(float value);
 	// 점프
 	void Jump();
 
@@ -43,6 +43,6 @@ private:
 		class AJBJPlayer* me;
 
 	// 방향키 입력 기억을 위한 속성
-	float h;
-	float v;
+	float forward;
+	float right;
 };

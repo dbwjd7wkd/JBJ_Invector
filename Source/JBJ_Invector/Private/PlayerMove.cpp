@@ -3,6 +3,7 @@
 
 #include "PlayerMove.h"
 #include "JBJPlayer.h"
+#include "JBJ_Invector.h"
 
 // Sets default values for this component's properties
 UPlayerMove::UPlayerMove()
@@ -57,27 +58,27 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 void UPlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// 처리할 입력함수 바인딩
-	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &UPlayerMove::Vertical);
-	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &UPlayerMove::Horizontal);
+	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &UPlayerMove::MoveForward);
+	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &UPlayerMove::MoveRight);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &UPlayerMove::Jump);
 }
 
-void UPlayerMove::Horizontal(float value)
+void UPlayerMove::MoveForward(float value)
 {
+	forward = value;
+
 	// CharacterMovement
 	// 움직일 방향 (좌우)
-	FVector dir = me->GetControlRotation().Quaternion().GetRightVector();
-
+	FVector dir = me->GetControlRotation().Quaternion().GetForwardVector();
 	me->AddMovementInput(dir, value);
 }
 
-void UPlayerMove::Vertical(float value)
+void UPlayerMove::MoveRight(float value)
 {
-	// 움직일 방향 (앞뒤)
-	//FVector dir = FRotationMatrix(me->GetControlRotation()).GetScaledAxis(EAxis::X);
-	//FVector dir = FTransform(me->GetControlRotation()).GetRotation().GetForwardVector();
-	FVector dir = me->GetControlRotation().Quaternion().GetForwardVector();
+	right = value;
 
+	// 움직일 방향 (앞뒤)
+	FVector dir = me->GetControlRotation().Quaternion().GetRightVector();
 	me->AddMovementInput(dir, value);
 }
 
