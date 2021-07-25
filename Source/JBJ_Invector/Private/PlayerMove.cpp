@@ -11,9 +11,8 @@ UPlayerMove::UPlayerMove()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-	bWantsInitializeComponent = true;
+	bWantsInitializeComponent = true; //InitializeComponent 함수 사용하기
 }
-
 
 // Called when the game starts
 void UPlayerMove::BeginPlay()
@@ -42,13 +41,11 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// 사용자 입력에 따라 상하좌우로 이동하고 싶다.
-	// 1. 방향이 필요
+	// 계속 앞으로 이동
 	FVector dir = FVector::ForwardVector;
-	// 2. 이동하고 싶다.
-	// P = P0 + vt
 	if (me)
 	{
+		// P = P0 + vt
 		FVector P0 = me->GetActorLocation();
 		FVector P = P0 + dir * speed * DeltaTime;
 		me->SetActorLocation(P, true);
@@ -66,9 +63,10 @@ void UPlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 void UPlayerMove::MoveForward(float value)
 {
 	forward = value;
+	PRINTLOG(TEXT("%s %f"), TEXT("Forward: "), forward);
 
 	// CharacterMovement
-	// 움직일 방향 (좌우)
+	// 움직일 방향 (앞뒤)
 	FVector dir = me->GetControlRotation().Quaternion().GetForwardVector();
 	me->AddMovementInput(dir, value);
 }
@@ -76,8 +74,9 @@ void UPlayerMove::MoveForward(float value)
 void UPlayerMove::MoveRight(float value)
 {
 	right = value;
+	PRINTLOG(TEXT("%s %f"), TEXT("Right: "), right);
 
-	// 움직일 방향 (앞뒤)
+	// 움직일 방향 (좌우)
 	FVector dir = me->GetControlRotation().Quaternion().GetRightVector();
 	me->AddMovementInput(dir, value);
 }

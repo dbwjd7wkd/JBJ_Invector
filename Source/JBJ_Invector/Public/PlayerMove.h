@@ -36,13 +36,13 @@ public:
 public:
 	// 필요속성 : 이동속도
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadOnly)
-		float speed = 500;
-
-private:
-	UPROPERTY()
-		class AJBJPlayer* me;
+	float speed = 500;
 
 	// 방향키 입력 기억을 위한 속성
 	float forward;
 	float right;
+
+private:
+	UPROPERTY()
+	class AJBJPlayer* me;
 };
