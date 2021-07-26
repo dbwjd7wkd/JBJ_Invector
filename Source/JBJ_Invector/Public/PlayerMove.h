@@ -26,11 +26,34 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+// 입력키 처리 함수들
+public:
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 
-	void MoveForward(float value);
-	void MoveRight(float value);
-	// 점프
+	// <Action Input>
+	// ↑↓→← : 발판클릭, 제자리점프
+	// space bar : 짧게 또는 길게 빛 나오기
+	// a, d : 왼쪽 또는 오른쪽으로 돌기, 왼쪽 또는 오른쪽으로 점프
+	void UpArrowKey();
+	void DownArrowKey();
+	void LeftArrowKey();
+	void RightArrowKey();
+	void SpaceBar();
+	void AKey();
+	void DKey();
+
+	void ReleaseUpArrowKey();
+	void ReleaseDownArrowKey();
+	void ReleaseLeftArrowKey();
+	void ReleaseRightArrowKey();
+	void ReleaseSpaceBar();
+	void ReleaseAKey();
+	void ReleaseDKey();
+
+	// <Axis Input>
+	// 사용 안하는 함수들
+	void Horizontal(float value);
+	void Vertical(float value);
 	void Jump();
 
 public:
@@ -39,8 +62,11 @@ public:
 	float speed = 500;
 
 	// 방향키 입력 기억을 위한 속성
-	float forward;
-	float right;
+	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
+	float horizontal, vertical; // 사용 안함
+
+	// 구간 기억을 위한 속성
+	float section = 0; // 일반구간: 0, 점프구간: 1
 
 private:
 	UPROPERTY()
