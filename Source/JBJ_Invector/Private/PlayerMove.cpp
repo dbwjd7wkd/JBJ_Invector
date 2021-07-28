@@ -19,6 +19,7 @@ void UPlayerMove::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	
 }
 
 void UPlayerMove::InitializeComponent()

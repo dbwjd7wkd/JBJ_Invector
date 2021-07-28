@@ -3,7 +3,8 @@
 
 #include "A_Pad.h"
 #include <Components/BoxComponent.h>
-#include "JBJ_InvectorPawn.h"
+#include "JBJPlayer.h"
+#include "PlayerMove.h"
 #include "JBJ_Invector.h"
 
 
@@ -48,12 +49,12 @@ void AA_Pad::Tick(float DeltaTime)
 
 void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	auto player = Cast<AJBJ_InvectorPawn>(OtherActor);
+	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
 	{
 		if (overlapCheck == false)
 		{
-			if (player->ForwardValue == 1)
+			if (player->playerMove->left == 1)
 			{
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				overlapCheck = true;
@@ -64,12 +65,12 @@ void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComponent, 
 
 void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	auto player = Cast<AJBJ_InvectorPawn>(OtherActor);
+	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
 	{
 		if (overlapCheck == false)
 		{
-			if (player->ForwardValue == 1)
+			if (player->playerMove->left == 1)
 			{
 				PRINTLOG(TEXT("Good!!!"));
 				overlapCheck = true;
@@ -80,12 +81,12 @@ void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComponent, AA
 
 void AA_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	auto player = Cast<AJBJ_InvectorPawn>(OtherActor);
+	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
 	{
 		if (overlapCheck == false)
 		{
-			if (player->ForwardValue == 1)
+			if (player->playerMove->left == 1)
 			{
 				PRINTLOG(TEXT("Bad T.T"));
 				overlapCheck = true;
