@@ -50,6 +50,8 @@ public:
 	void ReleaseAKey();
 	void ReleaseDKey();
 
+	void PlayerRot();
+
 	// <Axis Input>
 	// 사용 안하는 함수들
 	void Horizontal(float value);
@@ -67,6 +69,21 @@ public:
 
 	// 구간 기억을 위한 속성
 	float section = 0; // 일반구간: 0, 점프구간: 1
+
+	UPROPERTY()
+		float currentTime;
+
+	UPROPERTY()
+		FRotator myRot;
+
+	UPROPERTY()
+		FRotator plusRot;
+
+	UPROPERTY()
+		FRotator minusRot;
+
+	UPROPERTY()
+		FRotator desRot = FRotator(0.f, 0.f, 120.f);
 
 private:
 	UPROPERTY()

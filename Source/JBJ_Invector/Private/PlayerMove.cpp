@@ -168,15 +168,34 @@ void UPlayerMove::ReleaseSpaceBar()
 void UPlayerMove::ReleaseAKey()
 {
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
-	a = false;
+	//a = false;
 	PRINTLOG(TEXT("Release A"));
 }
 
 void UPlayerMove::ReleaseDKey()
 {
 	// d : 오른쪽으로 돌기, 오른쪽으로 점프
-	d = false;
+	//d = false;
 	PRINTLOG(TEXT("Release D"));
+}
+
+void UPlayerMove::PlayerRot()
+{
+	// 플레이어를 회전 시키고 싶다.
+	// 
+	// myRot(나의 Rotation 값) 의 x 값
+	float myRotX = myRot.Roll;
+
+	myRot = me->bodyMesh->GetRelativeRotation();
+	plusRot = myRot + desRot;
+	minusRot = myRot - desRot;
+
+	if (me)
+	{
+		myRot = FMath::Lerp(myRot, plusRot, 10 * GetWorld()->DeltaTimeSeconds);
+		me->bodyMesh->SetRelativeRotation(myRot);
+		PRINTLOG(TEXT("%f"), myRotX);
+	}
 }
 
 
