@@ -43,14 +43,13 @@ public:
 		FRotator myRot;
 
 	UPROPERTY()
-		FRotator desRot1 = FRotator(0.f, 0.f, 120.f);
+		FRotator plusRot;
+
+	UPROPERTY()
+		FRotator minusRot;
 	
 
 	UPROPERTY()
-		FRotator desRot2 = FRotator(0.f, 0.f, 240.f);
-	
-
-	UPROPERTY()
-		FRotator desRot3 = FRotator(0.f, 0.f, 360.f);
+		FRotator desRot = FRotator(0.f, 0.f, 120.f);
 	
 };

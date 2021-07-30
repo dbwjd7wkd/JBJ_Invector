@@ -47,18 +47,68 @@ void ARotTriangle::Tick(float DeltaTime)
 
 void ARotTriangle::Rot()
 {
-	float myRotZ = myRot.Yaw;
-	float desRotZ1 = desRot1.Yaw;
-	float desRotZ2 = desRot2.Yaw;
-	float desRotZ3 = desRot3.Yaw;
+	// 삼각형을 회전 시키고 싶다.
+	// 필요속성 : 회전 속도, 플레이어 키 입력, 회전 방향
+
+	// myRot(나의 Rotation 값) 의 x 값
+	float myRotX = myRot.Roll;
+	// desRot(목표 Rotation 값) 의 x 값
+	float desRotX1 = desRot.Roll;
+
+	plusRot = myRot + desRot;
+	minusRot = myRot - desRot;
+	
 	if (player)
 	{
 		if (player->playerMove->a == true)
 		{
-				myRot = FMath::Lerp(myRot, desRot1, 25 * GetWorld()->DeltaTimeSeconds);
+			myRot = FMath::Lerp(myRot, plusRot, 30 * GetWorld()->DeltaTimeSeconds);
+			SetActorRotation(myRot);
+			PRINTLOG(TEXT("%f"), myRotX);
+		}
+		
+		if (player)
+		{
+			if (player->playerMove->d == true)
+			{
+				myRot = FMath::Lerp(myRot, minusRot, 30 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
+				PRINTLOG(TEXT("%f"), myRotX);
+			}
 		}
 	}
 }
+
+
+
+//// 만약 삼각형의 Rotation.X 가 120 보다 작다면 120 까지 회전
+			//if (myRotX < 119.999992f)
+			//{
+			//	myRot = FMath::Lerp(myRot, desRot1, 30 * GetWorld()->DeltaTimeSeconds);
+			//	SetActorRotation(myRot);
+			//	PRINTLOG(TEXT("%f"), myRotX);
+			//}
+			//// 만약 삼각형의 Rotation.X 가 120 보다는 크고 240 보다 작다면 240 까지 회전
+			//if (myRotX >= 119.999992f && myRotX < 239.999985f)
+			//{
+			//	myRot = FMath::Lerp(myRot, desRot2, 25 * GetWorld()->DeltaTimeSeconds);
+			//	SetActorRotation(myRot);
+			//	PRINTLOG(TEXT("%f"), myRotX);
+			//}
+			//// 만약 삼각형의 Rotation.X 가 240 보다는 크고 360 보다 작다면 360 까지 회전
+			//if (myRotX >= 239.999985f)
+			//{
+			//	myRot = FMath::Lerp(myRot, desRot3, 25 * GetWorld()->DeltaTimeSeconds);
+			//	SetActorRotation(myRot);
+			//	PRINTLOG(TEXT("%f"), myRotX);
+			//	return;
+			//}
+			//// 만약 삼각형의 Rotation.X 가 240 보다는 크고 360 보다 작다면 120 까지 회전
+			//if (myRotX >= 359.999969)
+			//{
+			//	myRot = FMath::Lerp(myRot, desRot1, 30 * GetWorld()->DeltaTimeSeconds);
+			//	SetActorRotation(myRot);
+			//	PRINTLOG(TEXT("%f"), myRotX);
+			//}
 
 
