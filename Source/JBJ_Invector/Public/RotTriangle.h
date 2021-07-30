@@ -29,8 +29,28 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(VisibleAnywhere)
-	class URotatingMovementComponent* rotateMovement;
+	UPROPERTY()
+		class AJBJPlayer* player;
 
-	float rotSpeed = 500.f;
+	void Rot();
+
+public:
+
+	UPROPERTY()
+		float currentTime;
+
+	UPROPERTY()
+		FRotator myRot;
+
+	UPROPERTY()
+		FRotator desRot1 = FRotator(0.f, 0.f, 120.f);
+	
+
+	UPROPERTY()
+		FRotator desRot2 = FRotator(0.f, 0.f, 240.f);
+	
+
+	UPROPERTY()
+		FRotator desRot3 = FRotator(0.f, 0.f, 360.f);
+	
 };

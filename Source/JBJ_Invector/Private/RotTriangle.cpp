@@ -3,6 +3,9 @@
 
 #include "RotTriangle.h"
 #include "JBJPlayer.h"
+#include "PlayerMove.h"
+#include "JBJ_Invector.h"
+#include <Kismet/GameplayStatics.h>
 #include <Components/BoxComponent.h>
 #include "GameFramework/RotatingMovementComponent.h"
 
@@ -18,7 +21,7 @@ ARotTriangle::ARotTriangle()
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	meshComp->SetupAttachment(rotTest);
 
-	rotateMovement = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("ROTATEMOVEMENT"));
+	/*rotateMovement = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("ROTATEMOVEMENT"));*/
 	
 }
 
@@ -26,14 +29,40 @@ ARotTriangle::ARotTriangle()
 void ARotTriangle::BeginPlay()
 {
 	Super::BeginPlay();
-	rotateMovement->RotationRate = FRotator(0.0f, 0.0f, rotSpeed);
+	/*rotateMovement->RotationRate = FRotator(0.0f, 0.0f, rotSpeed);*/
+
+	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
+
+	myRot = GetActorRotation();
+	
 }
 
 // Called every frame
 void ARotTriangle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
+
+	Rot();
+}
+
+void ARotTriangle::Rot()
+{
+	float myRotZ = myRot.Yaw;
+	float desRotZ1 = desRot1.Yaw;
+	float desRotZ2 = desRot2.Yaw;
+	float desRotZ3 = desRot3.Yaw;
+	if (player)
+	{
+		PRINTLOG(TEXT("%f"), myRot.Yaw));
+		if (player->playerMove->a == true)
+		{
+			if (myRotZ < desRotZ1)
+			{
+				myRot = FMath::Lerp(myRot, desRot1, 25 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+			}
+		}
+	}
 }
 
 
