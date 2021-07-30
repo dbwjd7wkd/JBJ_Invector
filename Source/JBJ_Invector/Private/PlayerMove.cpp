@@ -189,7 +189,7 @@ void UPlayerMove::ReleaseSpaceBar()
 void UPlayerMove::ReleaseAKey()
 {
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
-	a = false;
+	//a = false;
 	PRINTLOG(TEXT("Release A"));
 }
 
