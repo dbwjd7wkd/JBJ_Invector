@@ -55,11 +55,8 @@ void ARotTriangle::Rot()
 	{
 		if (player->playerMove->a == true)
 		{
-			if (myRotZ < desRotZ1)
-			{
 				myRot = FMath::Lerp(myRot, desRot1, 25 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-			}
 		}
 	}
 }
