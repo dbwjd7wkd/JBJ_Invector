@@ -58,6 +58,7 @@ public:
 	void Vertical(float value);
 	void Jump();
 	void MoveToTarget();
+	void RotateToTarget();
 
 public:
 	// 필요속성 : 이동속도

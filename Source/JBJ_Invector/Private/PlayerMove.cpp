@@ -16,8 +16,6 @@ UPlayerMove::UPlayerMove()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 	bWantsInitializeComponent = true; //InitializeComponent 함수 사용하기
-
-	me->GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 // Called when the game starts
@@ -139,7 +137,9 @@ void UPlayerMove::AKey()
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
 	a = true;
 	PRINTLOG(TEXT("A"));
+
 	me->Jump();
+	UPlayerMove::RotateToTarget();
 }
 
 void UPlayerMove::DKey()
@@ -191,6 +191,9 @@ void UPlayerMove::ReleaseAKey()
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
 	//a = false;
 	PRINTLOG(TEXT("Release A"));
+
+	// 몸체 방향 원래대로 놓기
+	me->bodyMesh->SetWorldRotation(FRotator(0, 0, 0));
 }
 
 void UPlayerMove::ReleaseDKey()
@@ -255,18 +258,13 @@ void UPlayerMove::MoveToTarget()
 	FVector dir = aPad->GetActorLocation() - me->GetActorLocation();
 	// 2. 이동하고 싶다.
 	me->GetCharacterMovement()->AddImpulse(dir * 30);
+}
 
-	// 3. 이동하는 방향으로 몸을 기울이고 싶다.
+void UPlayerMove::RotateToTarget()
+{
+	// 몸체 점프하는 방향으로 회전하기
+	FVector dir = aPad->GetActorLocation() - me->GetActorLocation();
 	dir.Normalize();
-	// me->GetCharacterMovement()->bOrientRotationToMovement = true; // 생성자로
-
-	// 바라보고 싶은 방향
 	FRotator targetRot = dir.ToOrientationRotator();
-	myRot = me->GetActorRotation();
-
-	// lerp 중요 (linear interpolation)
-	myRot = FMath::Lerp(myRot, FRotator(0, 0, targetRot.Roll), 5 * GetWorld()->DeltaTimeSeconds);
-	
-	// -> 부드럽게 회전하고 싶다.
-	me->bodyMesh->SetWorldRotation(myRot);
+	me->bodyMesh->SetWorldRotation(FRotator(0, 0, targetRot.Yaw));
 }
