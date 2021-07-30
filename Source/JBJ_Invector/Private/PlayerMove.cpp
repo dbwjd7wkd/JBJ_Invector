@@ -4,6 +4,10 @@
 #include "PlayerMove.h"
 #include "JBJPlayer.h"
 #include "JBJ_Invector.h"
+#include "RotTriangle.h"
+#include "A_Pad.h"
+#include <Kismet/GameplayStatics.h>
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values for this component's properties
 UPlayerMove::UPlayerMove()
@@ -12,6 +16,8 @@ UPlayerMove::UPlayerMove()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 	bWantsInitializeComponent = true; //InitializeComponent 함수 사용하기
+
+	me->GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 // Called when the game starts
@@ -34,7 +40,12 @@ void UPlayerMove::InitializeComponent()
 		me->OnInputDelegate.AddUObject(this, &UPlayerMove::SetupPlayerInputComponent);
 		// 점프를 수 조절
 		me->JumpMaxCount = 1;
+		//me->GetCharacterMovement()->MaxWalkSpeed = 2000;
 	}
+
+	//m_triangle = Cast<ARotTriangle>(UGameplayStatics::GetActorOfClass(GetWorld(), ARotTriangle::StaticClass()));
+	aPad = Cast<AA_Pad>(UGameplayStatics::GetActorOfClass(GetWorld(), AA_Pad::StaticClass()));
+
 }
 
 // Called every frame
@@ -43,14 +54,23 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// 계속 앞으로 이동
-	FVector dir = FVector::ForwardVector;
 	if (me)
 	{
 		// P = P0 + vt
 		FVector P0 = me->GetActorLocation();
+		FVector dir = FVector::ForwardVector;
 		FVector P = P0 + dir * speed * DeltaTime;
 		me->SetActorLocation(P, true);
 	}
+
+	if (section == 1)
+	{
+		if (a == true)
+		{
+			UPlayerMove::MoveToTarget();
+		}
+	}
+
 }
 
 void UPlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -119,6 +139,7 @@ void UPlayerMove::AKey()
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
 	a = true;
 	PRINTLOG(TEXT("A"));
+	me->Jump();
 }
 
 void UPlayerMove::DKey()
@@ -168,7 +189,7 @@ void UPlayerMove::ReleaseSpaceBar()
 void UPlayerMove::ReleaseAKey()
 {
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
-	//a = false;
+	a = false;
 	PRINTLOG(TEXT("Release A"));
 }
 
@@ -225,4 +246,27 @@ void UPlayerMove::Jump()
 {
 	me->Jump();
 	PRINTLOG(TEXT("Jump"));
+}
+
+void UPlayerMove::MoveToTarget()
+{
+	// 플레이어를 왼쪽으로 점프시키고 싶다.
+	// 1. 방향이 필요 direction = target - me
+	FVector dir = aPad->GetActorLocation() - me->GetActorLocation();
+	// 2. 이동하고 싶다.
+	me->GetCharacterMovement()->AddImpulse(dir * 30);
+
+	// 3. 이동하는 방향으로 몸을 기울이고 싶다.
+	dir.Normalize();
+	// me->GetCharacterMovement()->bOrientRotationToMovement = true; // 생성자로
+
+	// 바라보고 싶은 방향
+	FRotator targetRot = dir.ToOrientationRotator();
+	myRot = me->GetActorRotation();
+
+	// lerp 중요 (linear interpolation)
+	myRot = FMath::Lerp(myRot, FRotator(0, 0, targetRot.Roll), 5 * GetWorld()->DeltaTimeSeconds);
+	
+	// -> 부드럽게 회전하고 싶다.
+	me->bodyMesh->SetWorldRotation(myRot);
 }

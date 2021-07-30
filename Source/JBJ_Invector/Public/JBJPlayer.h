@@ -45,4 +45,5 @@ public:
 
 	// 사용자 입력처리를 담당할 델리게이트
 	FPlayerInputDelegate OnInputDelegate;
+
 };

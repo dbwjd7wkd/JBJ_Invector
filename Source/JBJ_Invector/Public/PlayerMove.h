@@ -57,6 +57,7 @@ public:
 	void Horizontal(float value);
 	void Vertical(float value);
 	void Jump();
+	void MoveToTarget();
 
 public:
 	// 필요속성 : 이동속도
@@ -68,7 +69,7 @@ public:
 	float horizontal, vertical; // 사용 안함
 
 	// 구간 기억을 위한 속성
-	float section = 0; // 일반구간: 0, 점프구간: 1
+	float section = 1; // 일반구간: 0, 점프구간: 1
 
 	UPROPERTY()
 		float currentTime;
@@ -88,4 +89,10 @@ public:
 private:
 	UPROPERTY()
 	class AJBJPlayer* me;
+
+	//UPROPERTY(VisibleAnywhere, Category = RotTriangle)
+	//	class ARotTriangle* m_triangle;
+
+	UPROPERTY(VisibleAnywhere, Category = APad)
+		class AA_Pad* aPad;
 };

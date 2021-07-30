@@ -7,6 +7,7 @@
 #include <Components/CapsuleComponent.h>
 #include <Components/BoxComponent.h>
 #include <Components/StaticMeshComponent.h>
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AJBJPlayer::AJBJPlayer()
@@ -41,6 +42,8 @@ AJBJPlayer::AJBJPlayer()
 		// bodyMesh 에 할당해주기
 		bodyMesh->SetStaticMesh(tempMesh.Object);
 	}
+
+	GetCharacterMovement()->GravityScale = 1.7f;
 }
 
 // Called when the game starts or when spawned
