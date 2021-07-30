@@ -53,7 +53,6 @@ void ARotTriangle::Rot()
 	float desRotZ3 = desRot3.Yaw;
 	if (player)
 	{
-		PRINTLOG(TEXT("%f"), myRot.Yaw));
 		if (player->playerMove->a == true)
 		{
 			if (myRotZ < desRotZ1)
