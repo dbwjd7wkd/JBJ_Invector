@@ -7,7 +7,7 @@
 #include "JBJ_Invector.h"
 #include <Kismet/GameplayStatics.h>
 #include <Components/BoxComponent.h>
-#include "GameFramework/RotatingMovementComponent.h"
+#include "TimerManager.h"
 
 // Sets default values
 ARotTriangle::ARotTriangle()
@@ -22,6 +22,9 @@ ARotTriangle::ARotTriangle()
 	meshComp->SetupAttachment(rotTest);
 
 	/*rotateMovement = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("ROTATEMOVEMENT"));*/
+
+	plusRot = myRot + desRot;
+	minusRot = myRot - desRot;
 	
 }
 
@@ -53,30 +56,32 @@ void ARotTriangle::Rot()
 	// myRot(나의 Rotation 값) 의 x 값
 	float myRotX = myRot.Roll;
 	// desRot(목표 Rotation 값) 의 x 값
-	float desRotX1 = desRot.Roll;
-
-	plusRot = myRot + desRot;
-	minusRot = myRot - desRot;
 	
+
 	if (player)
 	{
 		if (player->playerMove->a == true)
 		{
-			myRot = FMath::Lerp(myRot, plusRot, 30 * GetWorld()->DeltaTimeSeconds);
+			
+			myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
 			SetActorRotation(myRot);
-			PRINTLOG(TEXT("%f"), myRotX);
-		}
-		
-		if (player)
-		{
-			if (player->playerMove->d == true)
-			{
-				myRot = FMath::Lerp(myRot, minusRot, 30 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
+			GetWorld()->GetTimerManager().SetTimer(createTimer, this, &ARotTriangle::RotStop, 1.0f, true, 0);
+			
+				if (myRotX <= -119.5f && myRotX >= -120.5f)
+				{
+				// 딱 -120 이 됨
+				myRot = FRotator(0.f, 0.f, -120.0f);
+				
+				player->playerMove->a = false;
 				PRINTLOG(TEXT("%f"), myRotX);
-			}
+				}
 		}
 	}
+}
+
+void ARotTriangle::RotStop()
+{
+	GetWorld()->GetTimerManager().ClearTimer(createTimer);
 }
 
 

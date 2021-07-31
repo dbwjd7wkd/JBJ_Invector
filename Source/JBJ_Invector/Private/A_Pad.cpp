@@ -54,7 +54,7 @@ void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComponent, 
 	{
 		if (overlapCheck == false)
 		{
-			if (player->playerMove->left == true)
+			if (player->playerMove->a == true)
 			{
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				overlapCheck = true;
@@ -70,7 +70,7 @@ void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComponent, AA
 	{
 		if (overlapCheck == false)
 		{
-			if (player->playerMove->left == true)
+			if (player->playerMove->a == true)
 			{
 				PRINTLOG(TEXT("Good!!!"));
 				overlapCheck = true;
@@ -86,7 +86,7 @@ void AA_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComponent, AAct
 	{
 		if (overlapCheck == false)
 		{
-			if (player->playerMove->left == true)
+			if (player->playerMove->a == true)
 			{
 				PRINTLOG(TEXT("Bad T.T"));
 				overlapCheck = true;

@@ -34,6 +34,8 @@ public:
 
 	void Rot();
 
+	void RotStop();
+
 public:
 
 	UPROPERTY()
@@ -48,8 +50,13 @@ public:
 	UPROPERTY()
 		FRotator minusRot;
 	
-
+public:
 	UPROPERTY()
 		FRotator desRot = FRotator(0.f, 0.f, 120.f);
-	
+
+	UPROPERTY()
+		FTimerHandle createTimer;
+
+	UPROPERTY()
+		float idleTime = 1.f;
 };
