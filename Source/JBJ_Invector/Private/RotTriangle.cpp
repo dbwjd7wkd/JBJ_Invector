@@ -79,18 +79,20 @@ void ARotTriangle::Rot()
 		
 		if (player->playerMove->a == true)
 		{
-			//PRINTLOG(TEXT("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"));
-			PRINTLOG(TEXT("Progressing %d"), myRotX);
+			
+			
 			// 0 ∫∏¥Ÿ ¿€∞Ì -119 ∫∏¥Ÿ ≈¨∂ß, ∂«¥¬ 240∫∏¥Ÿ ≈©∞Ì 360 ∫∏¥Ÿ ¿€¿ª∂ß
-			if (0 >= myRotX && myRotX >= -119 ||  240 <= myRotX && myRotX <= 360)
+			if (0 >= myRotX && myRotX >= -119 )
 			{
-				myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
+				PRINTLOG(TEXT("vvvvvvvvvvvvvv"));
+				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 10 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
 
-				if (myRotX == -119 || myRotX == 239)
+				if (myRotX == -119 || myRotX == 119)
 				{
 					// µ¸ -120 ¿Ã µ 
 					myRot = FRotator(0.f, 0.f, -120.f);
+					myRotX = -120;
 					SetActorRotation(myRot);
 					minusRot = myRot - desRot;
 					PRINTLOG(TEXT("%d"), myRotX);
@@ -100,16 +102,17 @@ void ARotTriangle::Rot()
 				
 			}
 			
-			else if (-120 >= myRotX && myRotX >= -239/* || 240 >= myRotX && myRotX >= 120*/)
+			else if (-120 >= myRotX && myRotX >= -239)
 			{
 				myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
 
-				if (myRotX == -239 || myRotX == 120)
+				if (myRotX == -239 || myRotX == 239)
 				{
 					// µ¸ -120 ¿Ã µ 
 					myRot = FRotator(0.f, 0.f, -240.f);
 					SetActorRotation(myRot);
+					myRotX = -240;
 					minusRot = myRot - desRot;
 					PRINTLOG(TEXT("%d"), myRotX);
 					player->playerMove->a = false;
@@ -123,7 +126,7 @@ void ARotTriangle::Rot()
 				myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
 
-				if (myRotX == -359)
+				if (myRotX == -359 || myRotX == 359)
 				{
 					// µ¸ -120 ¿Ã µ 
 					myRot = FRotator(0.f, 0.f, 0.f);
@@ -135,7 +138,61 @@ void ARotTriangle::Rot()
 					player->playerMove->a = false;
 
 				}
+			}
 
+			else if (120 >= myRotX && myRotX >= 1)
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				PRINTLOG(TEXT("ttttttttttttttttt"));
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == 1 || myRotX == 359)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 0.f);
+					myRotX = 0;
+					SetActorRotation(myRot);
+					
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->a = false;
+
+				}
+			}
+
+			else if (240 >= myRotX && myRotX >= 121)
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0, 0, 120), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == 121 || myRotX == 359)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 120.f);
+					myRotX = 120.f;
+					SetActorRotation(myRot);
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->a = false;
+
+				}
+			}
+
+			else if (360 >= myRotX && myRotX >= 241)
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0, 0, 240.f), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == 240)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 240.f);
+					myRotX = 0.f;
+					SetActorRotation(myRot);
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->a = false;
+
+				}
 			}
 		}
 
@@ -143,6 +200,121 @@ void ARotTriangle::Rot()
 		/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// </summary> 
 
+
+		if (player->playerMove->d == true)
+		{
+			// 360 ∫∏¥Ÿ ¿€∞Ì -119 ∫∏¥Ÿ ≈¨∂ß, ∂«¥¬ 240∫∏¥Ÿ ≈©∞Ì 360 ∫∏¥Ÿ ¿€¿ª∂ß
+			if (0 <= myRotX && myRotX <= 119 )
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 120.f), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+
+				if (myRotX == -119 || myRotX == 119)
+				{
+					// µ¸ 120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 120.f);
+					SetActorRotation(myRot);
+					myRotX = 120.f;
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->d = false;
+
+				}
+
+			}
+
+			else if (120 <= myRotX && myRotX <= 239)
+			{
+				myRot = FMath::Lerp(myRot, plusRot, 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				
+				if (myRotX == -239 || myRotX == 239)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 240.f);
+					SetActorRotation(myRot);
+					myRotX = 240.f;
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->d = false;
+
+				}
+
+			}
+
+			else if (240 <= myRotX && myRotX <= 359)
+			{
+				myRot = FMath::Lerp(myRot, plusRot, 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == -1 || myRotX == 359)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 0.f);
+					myRotX = 0.f;
+					SetActorRotation(myRot);
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->d = false;
+
+				}
+			}
+
+			else if (-120 <= myRotX && myRotX <= -1)
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0,0,0), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == -1)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, 0.f);
+					myRotX = 0;
+					SetActorRotation(myRot);
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->d = false;
+
+				}
+			}
+
+			else if (-240 <= myRotX && myRotX <= -121)
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == -121)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, -120.f);
+					myRotX = -120.f;
+					SetActorRotation(myRot);
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->d = false;
+
+				}
+			}
+
+			else if (-360 <= myRotX && myRotX <= -241)
+			{
+				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240.f), 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+				PRINTLOG(TEXT("%d"), myRotX);
+				if (myRotX == -241)
+				{
+					// µ¸ -120 ¿Ã µ 
+					myRot = FRotator(0.f, 0.f, -240.f);
+					myRotX = 0.f;
+					SetActorRotation(myRot);
+					plusRot = myRot + desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->d = false;
+
+				}
+			}
+		}
 		
 	}
 }
