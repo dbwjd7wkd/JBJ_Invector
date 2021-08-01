@@ -25,7 +25,7 @@ ARotTriangle::ARotTriangle()
 
 	plusRot = myRot + desRot;
 	minusRot = myRot - desRot;
-	
+
 }
 
 // Called when the game starts or when spawned
@@ -53,67 +53,101 @@ void ARotTriangle::Rot()
 	// 삼각형을 회전 시키고 싶다.
 	// 필요속성 : 회전 속도, 플레이어 키 입력, 회전 방향
 
-	// myRot(나의 Rotation 값) 의 x 값
-	float myRotX = myRot.Roll;
-	// desRot(목표 Rotation 값) 의 x 값
+	// myRot(나의 Rotation 값) 의 x 값 (int가 가장 정확하니 int 로 체크)
+	int32 myRotX = myRot.Roll;
 	
+	//if ( myRotX <= -359 || myRotX >= 360)
+	//{
+	//	//GetWorld()->GetTimerManager().SetTimer(createTimer, this, &ARotTriangle::RotXReset, 3.0f, true, 0);
+	//	myRot == FRotator(0.f, 0.f, 0.f);
+	//	myRotX = 0;
+	//	
+	//}
+
+	/*if (myRot == FRotator(-120.f, 0.f, 0.f) || myRot == FRotator(240.f, 0.f, 0.f))
+	{
+		myRot == FRotator(240.f, 0.f, 0.f);
+	}
+
+	if (myRot == FRotator(-240.f, 0.f, 0.f) || myRot == FRotator(120.f, 0.f, 0.f))
+	{
+		myRot == FRotator(120.f, 0.f, 0.f);
+	}*/
 
 	if (player)
 	{
+		
 		if (player->playerMove->a == true)
 		{
-			
-			myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
-			SetActorRotation(myRot);
-			GetWorld()->GetTimerManager().SetTimer(createTimer, this, &ARotTriangle::RotStop, 1.0f, true, 0);
-			
-				if (myRotX <= -119.5f && myRotX >= -120.5f)
+			PRINTLOG(TEXT("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"));
+			// 0 보다 작고 -119 보다 클때, 또는 240보다 크고 360 보다 작을때
+			if (0 >= myRotX && myRotX >= -119 ||  240 <= myRotX && myRotX <= 360)
+			{
+				myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+
+				if (myRotX == -119 || myRotX == 239)
 				{
-				// 딱 -120 이 됨
-				myRot = FRotator(0.f, 0.f, -120.0f);
-				
-				player->playerMove->a = false;
-				PRINTLOG(TEXT("%f"), myRotX);
+					// 딱 -120 이 됨
+					myRot = FRotator(0.f, 0.f, -120.f);
+					SetActorRotation(myRot);
+					minusRot = myRot - desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->a = false;
+					
 				}
+				
+			}
+			
+			else if (-120 >= myRotX && myRotX >= -239/* || 240 >= myRotX && myRotX >= 120*/)
+			{
+				myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+
+				if (myRotX == -239 || myRotX == 120)
+				{
+					// 딱 -120 이 됨
+					myRot = FRotator(0.f, 0.f, -240.f);
+					SetActorRotation(myRot);
+					minusRot = myRot - desRot;
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->a = false;
+
+				}
+
+			}
+
+			else if (-240 >= myRotX && myRotX >= -359)
+			{
+				myRot = FMath::Lerp(myRot, minusRot, 10 * GetWorld()->DeltaTimeSeconds);
+				SetActorRotation(myRot);
+
+				if (myRotX == -359)
+				{
+					// 딱 -120 이 됨
+					myRot = FRotator(0.f, 0.f, 360.f);
+					myRotX = 0.f;
+					SetActorRotation(myRot);
+					PRINTLOG(TEXT("muyaho"));
+					PRINTLOG(TEXT("%d"), myRotX);
+					player->playerMove->a = false;
+
+				}
+
+			}
 		}
+
+		/// <summary>
+		/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// </summary> 
+
+		
 	}
 }
 
-void ARotTriangle::RotStop()
+void ARotTriangle::RotXReset()
 {
+	PRINTLOG(TEXT("muyaho"));
 	GetWorld()->GetTimerManager().ClearTimer(createTimer);
 }
-
-
-
-//// 만약 삼각형의 Rotation.X 가 120 보다 작다면 120 까지 회전
-			//if (myRotX < 119.999992f)
-			//{
-			//	myRot = FMath::Lerp(myRot, desRot1, 30 * GetWorld()->DeltaTimeSeconds);
-			//	SetActorRotation(myRot);
-			//	PRINTLOG(TEXT("%f"), myRotX);
-			//}
-			//// 만약 삼각형의 Rotation.X 가 120 보다는 크고 240 보다 작다면 240 까지 회전
-			//if (myRotX >= 119.999992f && myRotX < 239.999985f)
-			//{
-			//	myRot = FMath::Lerp(myRot, desRot2, 25 * GetWorld()->DeltaTimeSeconds);
-			//	SetActorRotation(myRot);
-			//	PRINTLOG(TEXT("%f"), myRotX);
-			//}
-			//// 만약 삼각형의 Rotation.X 가 240 보다는 크고 360 보다 작다면 360 까지 회전
-			//if (myRotX >= 239.999985f)
-			//{
-			//	myRot = FMath::Lerp(myRot, desRot3, 25 * GetWorld()->DeltaTimeSeconds);
-			//	SetActorRotation(myRot);
-			//	PRINTLOG(TEXT("%f"), myRotX);
-			//	return;
-			//}
-			//// 만약 삼각형의 Rotation.X 가 240 보다는 크고 360 보다 작다면 120 까지 회전
-			//if (myRotX >= 359.999969)
-			//{
-			//	myRot = FMath::Lerp(myRot, desRot1, 30 * GetWorld()->DeltaTimeSeconds);
-			//	SetActorRotation(myRot);
-			//	PRINTLOG(TEXT("%f"), myRotX);
-			//}
-
 

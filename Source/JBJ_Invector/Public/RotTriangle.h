@@ -34,7 +34,7 @@ public:
 
 	void Rot();
 
-	void RotStop();
+	void RotXReset();
 
 public:
 
@@ -52,7 +52,7 @@ public:
 	
 public:
 	UPROPERTY()
-		FRotator desRot = FRotator(0.f, 0.f, 120.f);
+		FRotator desRot = FRotator(0.f, 0.f, 120);
 
 	UPROPERTY()
 		FTimerHandle createTimer;
