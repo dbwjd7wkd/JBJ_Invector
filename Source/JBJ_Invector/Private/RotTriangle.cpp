@@ -79,7 +79,8 @@ void ARotTriangle::Rot()
 		
 		if (player->playerMove->a == true)
 		{
-			PRINTLOG(TEXT("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"));
+			//PRINTLOG(TEXT("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"));
+			PRINTLOG(TEXT("Progressing %d"), myRotX);
 			// 0 보다 작고 -119 보다 클때, 또는 240보다 크고 360 보다 작을때
 			if (0 >= myRotX && myRotX >= -119 ||  240 <= myRotX && myRotX <= 360)
 			{
@@ -125,9 +126,10 @@ void ARotTriangle::Rot()
 				if (myRotX == -359)
 				{
 					// 딱 -120 이 됨
-					myRot = FRotator(0.f, 0.f, 360.f);
+					myRot = FRotator(0.f, 0.f, 0.f);
 					myRotX = 0.f;
 					SetActorRotation(myRot);
+					minusRot = myRot - desRot;
 					PRINTLOG(TEXT("muyaho"));
 					PRINTLOG(TEXT("%d"), myRotX);
 					player->playerMove->a = false;
