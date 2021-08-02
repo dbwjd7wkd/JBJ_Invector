@@ -32,9 +32,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = "PlayerMove", BlueprintReadWrite)
 		class UPlayerMove* playerMove;
 
-	//// Camera
-	//UPROPERTY(EditAnywhere, Category = FPSCamera, BlueprintReadWrite)
-	//	class UCameraComponent* camera;
 	// Camera
 	UPROPERTY(EditAnywhere, Category = FPSCamera, BlueprintReadWrite)
 		class UCameraComponent* camera;

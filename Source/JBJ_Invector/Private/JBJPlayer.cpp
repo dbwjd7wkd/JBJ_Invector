@@ -71,6 +71,7 @@ void AJBJPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	camera = Cast<UCameraComponent>(GetDefaultSubobjectByName(TEXT("CameraComponent")));
 }
 
 // Called every frame
