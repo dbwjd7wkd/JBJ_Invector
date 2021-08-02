@@ -6,7 +6,6 @@
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
 #include <Kismet/GameplayStatics.h>
-#include <Components/BoxComponent.h>
 #include "TimerManager.h"
 
 // Sets default values
@@ -14,12 +13,6 @@ ARotTriangle::ARotTriangle()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	rotTest = CreateDefaultSubobject<UBoxComponent>(TEXT("RotTest"));
-	RootComponent = rotTest;
-
-	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
-	meshComp->SetupAttachment(rotTest);
 
 }
 

@@ -15,11 +15,6 @@ public:
 	// Sets default values for this actor's properties
 	ARotTriangle();
 
-	UPROPERTY(VisibleAnywhere, Category = "Component")
-		class UBoxComponent* rotTest;
-
-	UPROPERTY(VisibleAnywhere, Category = "Component")
-		class UStaticMeshComponent* meshComp;
 
 protected:
 	// Called when the game starts or when spawned
