@@ -29,19 +29,22 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	//PlayerMove 컴포넌트 추가
-	UPROPERTY(VisibleAnywhere, Category = "PlayerMove")
+	UPROPERTY(EditAnywhere, Category = "PlayerMove", BlueprintReadWrite)
 		class UPlayerMove* playerMove;
 
 	// Camera
-	UPROPERTY(VisibleAnywhere, Category = FPSCamera)
+	UPROPERTY(EditAnywhere, Category = FPSCamera, BlueprintReadWrite)
 		class UCameraComponent* camera;
 
-	// Box Collision
-	UPROPERTY(VisibleAnywhere, Category = "Collision")
-		class UBoxComponent* collision;
 	// StaticMesh
-	UPROPERTY(VisibleAnywhere, Category = "BodyMesh")
+	UPROPERTY(EditAnywhere, Category = "BodyMesh", BlueprintReadWrite)
 		class UStaticMeshComponent* bodyMesh;
+	// cube1
+	UPROPERTY(EditAnywhere, Category = "Cube1", BlueprintReadWrite)
+		class UStaticMeshComponent* cube1;
+	// cube2
+	UPROPERTY(EditAnywhere, Category = "Cube2", BlueprintReadWrite)
+		class UStaticMeshComponent* cube2;
 
 	// 사용자 입력처리를 담당할 델리게이트
 	FPlayerInputDelegate OnInputDelegate;

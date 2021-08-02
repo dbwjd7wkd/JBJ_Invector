@@ -5,7 +5,6 @@
 #include "PlayerMove.h"
 #include <Camera/CameraComponent.h>
 #include <Components/CapsuleComponent.h>
-#include <Components/BoxComponent.h>
 #include <Components/StaticMeshComponent.h>
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -21,14 +20,25 @@ AJBJPlayer::AJBJPlayer()
 	// 카메라 컴포넌트 등록
 	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	camera->SetupAttachment(GetCapsuleComponent());
-	camera->SetRelativeLocation(FVector(-560, 0, 270));
+	camera->SetRelativeLocation(FVector(-665.000000, 0.000000, 270.000000));
 	camera->SetRelativeRotation(FRotator(-20, 0, 0));
 
 	// 메시 컴포넌트 등록
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
-	bodyMesh->SetupAttachment(camera);
-	bodyMesh->SetRelativeLocation(FVector(647.443542, 0.000000, -122.214050));
-	bodyMesh->SetRelativeRotation(FRotator(19.999989, 0.000000, 0.000000));
+	bodyMesh->SetupAttachment(GetCapsuleComponent());
+	bodyMesh->SetRelativeLocation(FVector(8.000000, 0.000000, -66.000000));
+	bodyMesh->SetRelativeRotation(FRotator(0, 0.000000, 0.000000));
+
+	// cube1, cube2 컴포넌트 등록
+	cube1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube1"));
+	cube1->SetupAttachment(GetCapsuleComponent());
+	cube1->SetRelativeLocation(FVector(100.000000, -350.000000, 40.000000));
+	cube1->SetRelativeScale3D(FVector(0.300000, 0.300000, 0.300000));
+
+	cube2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube2"));
+	cube2->SetupAttachment(GetCapsuleComponent());
+	cube2->SetRelativeLocation(FVector(100.000000, 350.000000, 40.000000));
+	cube2->SetRelativeScale3D(FVector(0.300000, 0.300000, 0.300000));
 
 	// Actor 를 이루는 컴포넌트를 붙이도록 한다.
 	playerMove = CreateDefaultSubobject<UPlayerMove>(TEXT("PlayerMove"));
@@ -41,6 +51,14 @@ AJBJPlayer::AJBJPlayer()
 	{
 		// bodyMesh 에 할당해주기
 		bodyMesh->SetStaticMesh(tempMesh.Object);
+	}
+
+	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh2(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
+
+	if (tempMesh2.Succeeded())
+	{
+		cube1->SetStaticMesh(tempMesh2.Object);
+		cube2->SetStaticMesh(tempMesh2.Object);
 	}
 
 	GetCharacterMovement()->GravityScale = 1.7f;

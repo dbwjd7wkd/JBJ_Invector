@@ -42,6 +42,10 @@ public:
 	void AKey();
 	void DKey();
 
+	void PlayerRot();
+	void MoveToTarget();
+	void RotateToTarget();
+
 	void ReleaseUpArrowKey();
 	void ReleaseDownArrowKey();
 	void ReleaseLeftArrowKey();
@@ -50,42 +54,43 @@ public:
 	void ReleaseAKey();
 	void ReleaseDKey();
 
-	void PlayerRot();
-
 	// <Axis Input>
 	// 사용 안하는 함수들
 	void Horizontal(float value);
 	void Vertical(float value);
 	void Jump();
-	void MoveToTarget();
-	void RotateToTarget();
 
 public:
 	// 필요속성 : 이동속도
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadOnly)
-	float speed = 500;
+	float speed = 3000;
 
 	// 방향키 입력 기억을 위한 속성
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
 	float horizontal, vertical; // 사용 안함
 
 	// 구간 기억을 위한 속성
-	float section = 1; // 일반구간: 0, 점프구간: 1
+	float section = 0; // 일반구간: 0, 점프구간: 1
 
-	UPROPERTY()
-		float currentTime;
-
+	// 일반구간에서 a, d키 누르면 회전할 때 필요한 속성
 	UPROPERTY()
 		FRotator myRot;
 
 	UPROPERTY()
-		FRotator plusRot;
+		FRotator desRot;
+
+	// 점프구간에서 a, d키 누르면 옆으로 밀릴 때 필요한 속성
+	UPROPERTY()
+		FVector targetLocation;
 
 	UPROPERTY()
-		FRotator minusRot;
+		FTransform targetTransform;
 
 	UPROPERTY()
-		FRotator desRot = FRotator(0.f, 0.f, 120.f);
+		FRotator targetRotator;
+
+	UPROPERTY()
+		FVector direction;
 
 private:
 	UPROPERTY()
@@ -94,6 +99,6 @@ private:
 	//UPROPERTY(VisibleAnywhere, Category = RotTriangle)
 	//	class ARotTriangle* m_triangle;
 
-	UPROPERTY(VisibleAnywhere, Category = APad)
-		class AA_Pad* aPad;
+	//UPROPERTY(VisibleAnywhere, Category = APad)
+	//	class AA_Pad* aPad;
 };
