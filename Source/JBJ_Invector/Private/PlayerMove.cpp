@@ -65,11 +65,11 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	{
 		speed = 3000;
 
-		if (a == true)
+		if (myA == true)
 		{
 			UPlayerMove::MoveToTarget();
 		}
-		else if (d == true)
+		else if (myD == true)
 		{
 			UPlayerMove::MoveToTarget();
 		}
@@ -79,13 +79,13 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	{
 		speed = 1500;
 
-		if (a == true || d == true)
+		if (myA == true || myD == true)
 		{
 			UPlayerMove::PlayerRot();
 		}
 	}
 
-	if(a == false && d == false) UPlayerMove::RotateToTarget();
+	if(myA == false && myD == false) UPlayerMove::RotateToTarget();
 }
 
 void UPlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -154,6 +154,7 @@ void UPlayerMove::AKey()
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
 
 	a = true;
+	myA = true;
 	PRINTLOG(TEXT("A"));
 
 	if (section == 1)
@@ -177,6 +178,7 @@ void UPlayerMove::DKey()
 	// d : 오른쪽으로 돌기, 오른쪽으로 점프
 
 	d = true;
+	myD = true;
 	PRINTLOG(TEXT("D"));
 
 	if (section == 1)
@@ -215,13 +217,13 @@ void UPlayerMove::PlayerRot()
 		me->bodyMesh->SetRelativeRotation(myRot);
 	}
 
-	if (a == true && (1 <= myRot.Roll && myRot.Roll <= 12))
+	if (myA == true && (1 <= myRot.Roll && myRot.Roll <= 12))
 	{
-		a = false;
+		myA = false;
 	}
-	else if (d == true && (-12 < myRot.Roll && myRot.Roll <= -1))
+	else if (myD == true && (-12 < myRot.Roll && myRot.Roll <= -1))
 	{
-		d = false;
+		myD = false;
 	}
 
 }
@@ -267,8 +269,8 @@ void UPlayerMove::MoveToTarget()
 		//me->GetCharacterMovement()->AddForce(FVector(0, 0, 300));
 		//me->GetCharacterMovement()->AddImpulse(FVector(-direction.X, -direction.Y, direction.Z) * 1);
 
-		a = false;
-		d = false;
+		myA = false;
+		myD = false;
 
 		return;
 	}

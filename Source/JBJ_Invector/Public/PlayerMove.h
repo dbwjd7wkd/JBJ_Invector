@@ -67,6 +67,7 @@ public:
 
 	// 방향키 입력 기억을 위한 속성
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
+	bool myA = false, myD = false;
 	float horizontal, vertical; // 사용 안함
 
 	// 구간 기억을 위한 속성
