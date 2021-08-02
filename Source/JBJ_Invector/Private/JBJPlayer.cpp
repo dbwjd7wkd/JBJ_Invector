@@ -34,11 +34,13 @@ AJBJPlayer::AJBJPlayer()
 	cube1->SetupAttachment(GetCapsuleComponent());
 	cube1->SetRelativeLocation(FVector(100.000000, -350.000000, 40.000000));
 	cube1->SetRelativeScale3D(FVector(0.300000, 0.300000, 0.300000));
+	cube1->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	cube2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube2"));
 	cube2->SetupAttachment(GetCapsuleComponent());
 	cube2->SetRelativeLocation(FVector(100.000000, 350.000000, 40.000000));
 	cube2->SetRelativeScale3D(FVector(0.300000, 0.300000, 0.300000));
+	cube2->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	// Actor 를 이루는 컴포넌트를 붙이도록 한다.
 	playerMove = CreateDefaultSubobject<UPlayerMove>(TEXT("PlayerMove"));

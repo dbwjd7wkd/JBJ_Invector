@@ -63,6 +63,8 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 
 	if (section == 1) // 점프구간
 	{
+		speed = 3000;
+
 		if (a == true)
 		{
 			UPlayerMove::MoveToTarget();
@@ -75,6 +77,8 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	}
 	else if (section == 0) // 알반구간
 	{
+		speed = 1500;
+
 		if (a == true || d == true)
 		{
 			UPlayerMove::PlayerRot();

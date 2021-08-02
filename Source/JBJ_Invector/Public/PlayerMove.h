@@ -63,7 +63,7 @@ public:
 public:
 	// 필요속성 : 이동속도
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadOnly)
-	float speed = 3000;
+	float speed = 1000;
 
 	// 방향키 입력 기억을 위한 속성
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
