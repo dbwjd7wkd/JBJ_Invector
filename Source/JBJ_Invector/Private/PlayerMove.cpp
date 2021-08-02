@@ -52,14 +52,14 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// 계속 앞으로 이동
-	//if (me)
-	//{
-	//	// P = P0 + vt
-	//	FVector P0 = me->GetActorLocation();
-	//	FVector dir = me->GetActorForwardVector();
-	//	FVector P = P0 + dir * speed * DeltaTime;
-	//	me->SetActorLocation(P, true);
-	//}
+	if (me)
+	{
+		// P = P0 + vt
+		FVector P0 = me->GetActorLocation();
+		FVector dir = me->GetActorForwardVector();
+		FVector P = P0 + dir * speed * DeltaTime;
+		me->SetActorLocation(P, true);
+	}
 
 	if (section == 1) // 점프구간
 	{
