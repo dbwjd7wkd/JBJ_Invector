@@ -59,6 +59,7 @@ void ARotTriangle::Rot()
 				{
 					myRot = FRotator(0.f, 0.f, -120.f);
 					myRotX = -120;
+					
 					SetActorRotation(myRot);
 					player->playerMove->a = false;
 				}

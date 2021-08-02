@@ -32,11 +32,11 @@ void AUp_Pad::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	boxCompPerfect->OnComponentEndOverlap.AddDynamic(this, &AUp_Pad::OnCollisionPerfect);
-	boxCompGreat->OnComponentEndOverlap.AddDynamic(this, &AUp_Pad::OnCollisionGreat);
-	boxCompGreat2->OnComponentEndOverlap.AddDynamic(this, &AUp_Pad::OnCollisionGreat);
-	boxCompBad->OnComponentEndOverlap.AddDynamic(this, &AUp_Pad::OnCollisionBad);
-	boxCompBad2->OnComponentEndOverlap.AddDynamic(this, &AUp_Pad::OnCollisionBad);
+	boxCompPerfect->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionPerfect);
+	boxCompGreat->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionGreat);
+	boxCompGreat2->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionGreat);
+	boxCompBad->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionBad);
+	boxCompBad2->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionBad);
 }
 
 // Called every frame
@@ -46,7 +46,7 @@ void AUp_Pad::Tick(float DeltaTime)
 
 }
 
-void AUp_Pad::OnCollisionPerfect(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AUp_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
@@ -56,13 +56,13 @@ void AUp_Pad::OnCollisionPerfect(UPrimitiveComponent* OverlappedComponent, AActo
 			if (player->playerMove->up == true)
 			{
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
-				overlapCheck = true;
+				player->playerMove->up = false;
 			}
 		}
 	}
 }
 
-void AUp_Pad::OnCollisionGreat(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AUp_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
@@ -72,13 +72,13 @@ void AUp_Pad::OnCollisionGreat(UPrimitiveComponent* OverlappedComponent, AActor*
 			if (player->playerMove->up == true)
 			{
 				PRINTLOG(TEXT("Good!!!"));
-				overlapCheck = true;
+				player->playerMove->up = false;
 			}
 		}
 	}
 }
 
-void AUp_Pad::OnCollisionBad(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AUp_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
@@ -88,7 +88,7 @@ void AUp_Pad::OnCollisionBad(UPrimitiveComponent* OverlappedComponent, AActor* O
 			if (player->playerMove->up == true)
 			{
 				PRINTLOG(TEXT("Bad T.T"));
-				overlapCheck = true;
+				player->playerMove->up = false;
 			}
 		}
 	}
