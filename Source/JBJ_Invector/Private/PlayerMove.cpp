@@ -51,6 +51,8 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	//frame += 1;
+
 	// 계속 앞으로 이동
 	if (me)
 	{
@@ -133,6 +135,7 @@ void UPlayerMove::LeftArrowKey()
 	// ← : 발판클릭, 제자리점프
 	left = true;
 	PRINTLOG(TEXT("left"));
+	//PRINTLOG(TEXT("Jump: %f"), frame);
 }
 
 void UPlayerMove::RightArrowKey()
@@ -147,6 +150,7 @@ void UPlayerMove::SpaceBar()
 	// space bar : 짧게 또는 길게 빛 나오기
 	spaceBar = true;
 	PRINTLOG(TEXT("space bar"));
+	//PRINTLOG(TEXT("KKung!: %f"), frame);
 }
 
 void UPlayerMove::AKey()
@@ -361,7 +365,7 @@ void UPlayerMove::ReleaseLeftArrowKey()
 {
 	// ← : 발판클릭, 제자리점프
 	//left = false;
-	PRINTLOG(TEXT("Release left"));
+	//PRINTLOG(TEXT("Release left"));
 }
 
 void UPlayerMove::ReleaseRightArrowKey()
@@ -375,7 +379,7 @@ void UPlayerMove::ReleaseSpaceBar()
 {
 	// space bar : 짧게 또는 길게 빛 나오기
 	spaceBar = false;
-	PRINTLOG(TEXT("Release space bar"));
+	//PRINTLOG(TEXT("Release space bar"));
 }
 
 void UPlayerMove::ReleaseAKey()

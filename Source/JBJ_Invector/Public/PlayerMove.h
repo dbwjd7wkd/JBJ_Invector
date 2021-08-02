@@ -69,6 +69,7 @@ public:
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
 	bool myA = false, myD = false;
 	float horizontal, vertical; // 사용 안함
+	float frame = 0;
 
 	// 구간 기억을 위한 속성
 	float section = 0; // 일반구간: 0, 점프구간: 1

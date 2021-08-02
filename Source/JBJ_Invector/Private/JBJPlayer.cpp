@@ -17,11 +17,11 @@ AJBJPlayer::AJBJPlayer()
 	// 태어나면 자동으로 Controller를 갖도록 하자
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
-	// 카메라 컴포넌트 등록
-	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	camera->SetupAttachment(GetCapsuleComponent());
-	camera->SetRelativeLocation(FVector(-665.000000, 0.000000, 270.000000));
-	camera->SetRelativeRotation(FRotator(-20, 0, 0));
+	//// 카메라 컴포넌트 등록
+	//camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	//camera->SetupAttachment(GetCapsuleComponent());
+	//camera->SetRelativeLocation(FVector(-665.000000, 0.000000, 270.000000));
+	//camera->SetRelativeRotation(FRotator(-20, 0, 0));
 
 	// 메시 컴포넌트 등록
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
