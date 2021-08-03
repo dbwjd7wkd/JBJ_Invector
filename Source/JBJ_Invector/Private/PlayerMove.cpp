@@ -65,7 +65,7 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 
 	if (section == 1) // 점프구간
 	{
-		speed = 3000;
+		//speed = 3000;
 
 		if (myA == true)
 		{
@@ -79,7 +79,7 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	}
 	else if (section == 0) // 알반구간
 	{
-		speed = 1500;
+		//speed = 1500;
 
 		if (myA == true || myD == true)
 		{
@@ -165,7 +165,7 @@ void UPlayerMove::AKey()
 	{
 		if (me->GetCharacterMovement()->IsFalling()) return;
 
-		me->Jump();
+		//me->Jump();
 		targetTransform = me->cube1->GetComponentTransform();
 		targetLocation = me->cube1->GetComponentLocation();
 		targetRotator = FRotator(0, 0, -20);
@@ -189,7 +189,7 @@ void UPlayerMove::DKey()
 	{
 		if (me->GetCharacterMovement()->IsFalling()) return;
 
-		me->Jump();
+		//me->Jump();
 		targetTransform = me->cube2->GetComponentTransform();
 		targetLocation = me->cube2->GetComponentLocation();
 		targetRotator = FRotator(0, 0, 20);
@@ -269,9 +269,14 @@ void UPlayerMove::MoveToTarget()
 		// 몸체 방향 원래대로 놓기
 		//me->bodyMesh->SetRelativeRotation(FRotator(0, 0, 0));
 		// (점프 끝내기 위해) 아래 방향으로 힘 가하기
-		me->GetCharacterMovement()->AddImpulse(FVector(-direction.X*5, -direction.Y*5, direction.Z) * 700);//400
+		me->GetCharacterMovement()->AddImpulse(FVector(-direction.X*2, -direction.Y*2, direction.Z) * 700);//700
 		//me->GetCharacterMovement()->AddForce(FVector(0, 0, 300));
 		//me->GetCharacterMovement()->AddImpulse(FVector(-direction.X, -direction.Y, direction.Z) * 1);
+
+		//if (JBJCameraShake != NULL)
+		//{
+		//	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(JBJCameraShake, 1.0f);
+		//}
 
 		myA = false;
 		myD = false;

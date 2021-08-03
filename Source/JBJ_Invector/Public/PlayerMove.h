@@ -63,7 +63,7 @@ public:
 public:
 	// 필요속성 : 이동속도
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadOnly)
-	float speed = 1000;
+	float speed = 1500;
 
 	// 방향키 입력 기억을 위한 속성
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
@@ -72,7 +72,8 @@ public:
 	float frame = 0;
 
 	// 구간 기억을 위한 속성
-	float section = 0; // 일반구간: 0, 점프구간: 1
+	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadWrite)
+		float section = 0; // 일반구간: 0, 점프구간: 1
 
 	// 일반구간에서 a, d키 누르면 회전할 때 필요한 속성
 	UPROPERTY()
@@ -93,6 +94,10 @@ public:
 
 	UPROPERTY()
 		FVector direction;
+
+	// camera shake
+	UPROPERTY(EditAnywhere, Category = "JBJCameraShake", BlueprintReadWrite)
+		TSubclassOf<class UMatineeCameraShake> JBJCameraShake;
 
 private:
 	UPROPERTY()
