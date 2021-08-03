@@ -150,6 +150,9 @@ void UPlayerMove::SpaceBar()
 	// space bar : Âª°Ô ¶Ç´Â ±æ°Ô ºû ³ª¿À±â
 	spaceBar = true;
 	PRINTLOG(TEXT("space bar"));
+	float check = me->GetActorLocation().X;
+	PRINTLOG(TEXT("%f"), check);
+
 	//PRINTLOG(TEXT("KKung!: %f"), frame);
 }
 

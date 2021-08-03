@@ -55,6 +55,7 @@ void AUp_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, clas
 		{
 			if (player->playerMove->up == true)
 			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				player->playerMove->up = false;
 			}
@@ -71,6 +72,7 @@ void AUp_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, class 
 		{
 			if (player->playerMove->up == true)
 			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
 				PRINTLOG(TEXT("Good!!!"));
 				player->playerMove->up = false;
 			}
@@ -87,6 +89,7 @@ void AUp_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class AA
 		{
 			if (player->playerMove->up == true)
 			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
 				PRINTLOG(TEXT("Bad T.T"));
 				player->playerMove->up = false;
 			}
