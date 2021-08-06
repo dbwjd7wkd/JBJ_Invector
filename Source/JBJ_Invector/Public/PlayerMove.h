@@ -108,4 +108,5 @@ private:
 
 	//UPROPERTY(VisibleAnywhere, Category = APad)
 	//	class AA_Pad* aPad;
+	float currentTime;
 };

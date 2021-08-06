@@ -50,4 +50,13 @@ public:
 
 	UPROPERTY()
 		bool overlapCheck = false;
+
+public:
+	UPROPERTY(EditAnywhere, Category = "Setting")
+		float speed = 1500;
+
+	UPROPERTY()
+		class AActor* target;
+
+	FVector v;
 };

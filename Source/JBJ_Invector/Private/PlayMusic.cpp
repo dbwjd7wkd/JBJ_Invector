@@ -21,13 +21,18 @@ void APlayMusic::BeginPlay()
 	Super::BeginPlay();
 	
 	boxComp->OnComponentEndOverlap.AddDynamic(this, &APlayMusic::OnCollisionEnter);
+
+	v = FVector::ForwardVector * -speed;
 }
 
 // Called every frame
 void APlayMusic::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	FVector P = GetActorLocation() + v * DeltaTime;
 
+	SetActorLocation(P, true);
 }
 
 void APlayMusic::OnCollisionEnter(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)

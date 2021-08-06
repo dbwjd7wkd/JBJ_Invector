@@ -52,7 +52,7 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	//frame += 1;
-
+	currentTime += DeltaTime;
 	// 계속 앞으로 이동
 	if (me)
 	{

@@ -4,6 +4,7 @@
 #include "RotTriangle.h"
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
+#include "PadManager.h"
 #include "JBJ_Invector.h"
 #include <Kismet/GameplayStatics.h>
 #include "TimerManager.h"
@@ -24,6 +25,7 @@ void ARotTriangle::BeginPlay()
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
 	myRot = GetActorRotation();
+	
 	
 }
 
@@ -48,8 +50,6 @@ void ARotTriangle::Rot()
 		
 		if (player->playerMove->a == true)
 		{
-			
-			
 			if (0 >= myRotX && myRotX >= -119 )
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);

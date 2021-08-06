@@ -6,6 +6,7 @@
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ALeft_Pad::ALeft_Pad()
@@ -37,6 +38,15 @@ void ALeft_Pad::BeginPlay()
 	boxCompGreat2->OnComponentBeginOverlap.AddDynamic(this, &ALeft_Pad::OnCollisionGreat);
 	boxCompBad->OnComponentBeginOverlap.AddDynamic(this, &ALeft_Pad::OnCollisionBad);
 	boxCompBad2->OnComponentBeginOverlap.AddDynamic(this, &ALeft_Pad::OnCollisionBad);
+
+	target = UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass());
+	v = FVector::ForwardVector * speed;
+	if (target)
+	{
+		v = target->GetActorLocation() - GetActorLocation();
+		v.Normalize();
+		v *= speed;
+	}
 }
 
 // Called every frame
@@ -44,11 +54,14 @@ void ALeft_Pad::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FVector P = GetActorLocation() + v * DeltaTime;
+
+	SetActorLocation(P, true);
 }
 
 void ALeft_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	auto player = Cast<AJBJPlayer>(OtherActor);
+	auto player = Cast<AJBJPlayer>(OtherActor); 
 	if (player)
 	{
 		if (overlapCheck == false)
@@ -99,4 +112,3 @@ void ALeft_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class 
 		}
 	}
 }
-

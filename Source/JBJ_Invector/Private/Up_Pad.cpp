@@ -6,6 +6,7 @@
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AUp_Pad::AUp_Pad()
@@ -37,6 +38,16 @@ void AUp_Pad::BeginPlay()
 	boxCompGreat2->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionGreat);
 	boxCompBad->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionBad);
 	boxCompBad2->OnComponentBeginOverlap.AddDynamic(this, &AUp_Pad::OnCollisionBad);
+
+	target = UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass());
+	v = FVector::ForwardVector * speed;
+	if (target)
+	{
+		PRINTLOG(TEXT("gogo"))
+		v = target->GetActorLocation() - GetActorLocation();
+		v.Normalize();
+		v *= speed;
+	}
 }
 
 // Called every frame
@@ -44,6 +55,12 @@ void AUp_Pad::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (target)
+	{
+		FVector P = GetActorLocation() + v * DeltaTime;
+
+		SetActorLocation(P, true);
+	}
 }
 
 void AUp_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

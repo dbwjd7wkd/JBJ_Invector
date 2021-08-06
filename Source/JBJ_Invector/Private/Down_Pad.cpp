@@ -6,8 +6,7 @@
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
-#include <EngineGlobals.h>
-#include <Runtime/Engine/Classes/Engine/Engine.h>
+#include "Kismet/GameplayStatics.h"
 // Sets default values
 ADown_Pad::ADown_Pad()
 {
@@ -38,6 +37,15 @@ void ADown_Pad::BeginPlay()
 	boxCompGreat2->OnComponentBeginOverlap.AddDynamic(this, &ADown_Pad::OnCollisionGreat);
 	boxCompBad->OnComponentBeginOverlap.AddDynamic(this, &ADown_Pad::OnCollisionBad);
 	boxCompBad2->OnComponentBeginOverlap.AddDynamic(this, &ADown_Pad::OnCollisionBad);
+
+	target = UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass());
+	v = FVector::ForwardVector * speed;
+	if (target)
+	{
+		v = target->GetActorLocation() - GetActorLocation();
+		v.Normalize();
+		v *= speed;
+	}
 }
 
 // Called every frame
@@ -45,6 +53,9 @@ void ADown_Pad::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FVector P = GetActorLocation() + v * DeltaTime;
+
+	SetActorLocation(P, true);
 }
 
 void ADown_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

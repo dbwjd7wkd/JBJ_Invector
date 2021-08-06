@@ -37,4 +37,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 		class USoundBase* playMusic;
+
+public:
+	UPROPERTY(EditAnywhere, Category = "Setting")
+		float speed = 1500;
+
+	FVector v;
 };
