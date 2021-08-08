@@ -86,4 +86,7 @@ public:
 		float idleTime = 1.f;
 
 	void Rot();
+
+	UPROPERTY()
+	bool checkROt = true;
 };

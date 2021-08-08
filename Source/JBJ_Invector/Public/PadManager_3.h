@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "PadManager_2.generated.h"
+#include "PadManager_3.generated.h"
 
 UCLASS()
-class JBJ_INVECTOR_API APadManager_2 : public AActor
+class JBJ_INVECTOR_API APadManager_3 : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	APadManager_2();
+	APadManager_3();
 
 protected:
 	// Called when the game starts or when spawned

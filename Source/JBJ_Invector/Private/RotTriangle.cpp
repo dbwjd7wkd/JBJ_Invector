@@ -49,19 +49,19 @@ void ARotTriangle::Rot()
 	if (player)
 	{
 		
-		if (player->playerMove->a == true)
+		if (player->playerMove->aa == true)
 		{
 			if (0 >= myRotX && myRotX >= -119 )
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->d = false;
+				player->playerMove->dd = false;
 				if (myRotX == -119)
 				{
 					myRot = FRotator(0.f, 0.f, -120.f);
 					myRotX = -120;
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->aa = false;
 				}
 				
 			}
@@ -70,13 +70,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->d = false;
+				player->playerMove->dd = false;
 				if (myRotX == -239)
 				{
 					myRot = FRotator(0.f, 0.f, -240.f);
 					SetActorRotation(myRot);
 					myRotX = -240;
-					player->playerMove->a = false;
+					player->playerMove->aa = false;
 				}
 
 			}
@@ -85,13 +85,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->d = false;
+				player->playerMove->dd = false;
 				if (myRotX == -359)
 				{
 					myRot = FRotator(0.f, 0.f, 0.f);
 					myRotX = 0.f;
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->aa = false;
 				}
 			}
 
@@ -99,13 +99,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->d = false;
+				player->playerMove->dd = false;
 				if (myRotX == 1)
 				{
 					myRot = FRotator(0.f, 0.f, 0.f);
 					myRotX = 0;
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->aa = false;
 				}
 			}
 
@@ -113,13 +113,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->d = false;
+				player->playerMove->dd = false;
 				if (myRotX == 121)
 				{
 					myRot = FRotator(0.f, 0.f, 120.f);
 					myRotX = 120.f;
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->aa = false;
 				}
 			}
 
@@ -127,13 +127,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->d = false;
+				player->playerMove->dd = false;
 				if (myRotX == 241)
 				{
 					myRot = FRotator(0.f, 0.f, 240.f);
 					myRotX = 0.f;
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->aa = false;
 				}
 			}
 		}
@@ -143,19 +143,19 @@ void ARotTriangle::Rot()
 		/// </summary> 
 
 
-		if (player->playerMove->d == true)
+		if (player->playerMove->dd == true)
 		{
 			if (0 <= myRotX && myRotX <= 119 )
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->a = false;
+				player->playerMove->aa = false;
 				if (myRotX == 119)
 				{
 					myRot = FRotator(0.f, 0.f, 120.f);
 					SetActorRotation(myRot);
 					myRotX = 120.f;
-					player->playerMove->d = false;
+					player->playerMove->dd = false;
 				}
 
 			}
@@ -164,13 +164,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->a = false;
+				player->playerMove->aa = false;
 				if (myRotX == 239)
 				{
 					myRot = FRotator(0.f, 0.f, 240.f);
 					SetActorRotation(myRot);
 					myRotX = 240.f;
-					player->playerMove->d = false;
+					player->playerMove->dd = false;
 				}
 
 			}
@@ -179,13 +179,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->a = false;
+				player->playerMove->aa = false;
 				if (myRotX == 359)
 				{
 					myRot = FRotator(0.f, 0.f, 0.f);
 					myRotX = 0.f;
 					SetActorRotation(myRot);
-					player->playerMove->d = false;
+					player->playerMove->dd = false;
 				}
 			}
 
@@ -193,13 +193,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0,0,0), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->a = false;
+				player->playerMove->aa = false;
 				if (myRotX == -1)
 				{
 					myRot = FRotator(0.f, 0.f, 0.f);
 					myRotX = 0;
 					SetActorRotation(myRot);
-					player->playerMove->d = false;
+					player->playerMove->dd = false;
 				}
 			}
 
@@ -207,13 +207,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->a = false;
+				player->playerMove->aa = false;
 				if (myRotX == -121)
 				{
 					myRot = FRotator(0.f, 0.f, -120.f);
 					myRotX = -120.f;
 					SetActorRotation(myRot);
-					player->playerMove->d = false;
+					player->playerMove->dd = false;
 				}
 			}
 
@@ -221,13 +221,13 @@ void ARotTriangle::Rot()
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240.f), 20 * GetWorld()->DeltaTimeSeconds);
 				SetActorRotation(myRot);
-				player->playerMove->a = false;
+				player->playerMove->aa = false;
 				if (myRotX == -241)
 				{
 					myRot = FRotator(0.f, 0.f, -240.f);
 					myRotX = 0.f;
 					SetActorRotation(myRot);
-					player->playerMove->d = false;
+					player->playerMove->dd = false;
 				}
 			}
 		}

@@ -126,9 +126,11 @@ void ALeft_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class 
 void ALeft_Pad::Rot()
 {
 	int32 myRotX = myRot.Roll;
+
 	if (player)
 	{
-		if (player->playerMove->a == true)
+
+		if (player->playerMove->aa == true)
 		{
 			if (0 >= myRotX && myRotX >= -119)
 			{
@@ -222,7 +224,7 @@ void ALeft_Pad::Rot()
 		/// </summary> 
 
 
-		if (player->playerMove->d == true)
+		if (player->playerMove->dd == true)
 		{
 			if (0 <= myRotX && myRotX <= 119)
 			{
@@ -313,3 +315,4 @@ void ALeft_Pad::Rot()
 
 	}
 }
+
