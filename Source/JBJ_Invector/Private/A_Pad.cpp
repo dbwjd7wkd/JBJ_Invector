@@ -14,20 +14,19 @@ AA_Pad::AA_Pad()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	RootComponent = boxComp;
+
 	boxCompPerfect = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionPerfect"));
-	boxCompPerfect->SetupAttachment(boxComp);
+	RootComponent = boxCompPerfect;
 	boxCompGreat = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionGreat"));
-	boxCompGreat->SetupAttachment(boxComp);
+	boxCompGreat->SetupAttachment(boxCompPerfect);
 	boxCompGreat2 = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionGreat2"));
-	boxCompGreat2->SetupAttachment(boxComp);
+	boxCompGreat2->SetupAttachment(boxCompPerfect);
 	boxCompBad = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionBad"));
-	boxCompBad->SetupAttachment(boxComp);
+	boxCompBad->SetupAttachment(boxCompPerfect);
 	boxCompBad2 = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionBad2"));
-	boxCompBad2->SetupAttachment(boxComp);
+	boxCompBad2->SetupAttachment(boxCompPerfect);
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
-	meshComp->SetupAttachment(boxComp);
+	meshComp->SetupAttachment(boxCompPerfect);
 }
 
 // Called when the game starts or when spawned
@@ -40,7 +39,7 @@ void AA_Pad::BeginPlay()
 	boxCompGreat2->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionGreat);
 	boxCompBad->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionBad);
 	boxCompBad2->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionBad);
-	
+
 	target = UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass());
 	v = FVector::ForwardVector * speed;
 	if (target)
@@ -49,10 +48,6 @@ void AA_Pad::BeginPlay()
 		v.Normalize();
 		v *= speed;
 	}
-
-	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
-
-	myRot = GetActorRotation();
 }
 
 // Called every frame
@@ -60,19 +55,14 @@ void AA_Pad::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (target)
-	{
-		FVector P = GetActorLocation() + FVector(v.X, 0.0f, 0.0f) * DeltaTime;
+	FVector P = GetActorLocation() + v * DeltaTime;
 
-		SetActorLocation(P, true);
-	}
-
-	Rot();
+	SetActorLocation(P, true);
 }
 
 void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	
+	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
 	{
 		if (overlapCheck == false)
@@ -91,7 +81,7 @@ void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class
 
 void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	
+	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
 	{
 		if (overlapCheck == false)
@@ -110,7 +100,7 @@ void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, class A
 
 void AA_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	
+	auto player = Cast<AJBJPlayer>(OtherActor);
 	if (player)
 	{
 		if (overlapCheck == false)
@@ -124,197 +114,5 @@ void AA_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class AAc
 				player->playerMove->a = false;
 			}
 		}
-	}
-}
-
-void AA_Pad::Rot()
-{
-
-	int32 myRotX = myRot.Roll;
-	if (player)
-	{
-		if (player->playerMove->a == true)
-		{
-			if (0 >= myRotX && myRotX >= -119)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == -119)
-				{
-					myRot = FRotator(0.f, 0.f, -120.f);
-					myRotX = -120;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-
-			}
-
-			else if (-120 >= myRotX && myRotX >= -239)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == -239)
-				{
-					myRot = FRotator(0.f, 0.f, -240.f);
-					SetActorRotation(myRot);
-					myRotX = -240;
-					player->playerMove->a = false;
-				}
-
-			}
-
-			else if (-240 >= myRotX && myRotX >= -359)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == -359)
-				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-			}
-
-			else if (120 >= myRotX && myRotX >= 1)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == 1)
-				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-			}
-
-			else if (240 >= myRotX && myRotX >= 121)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == 121)
-				{
-					myRot = FRotator(0.f, 0.f, 120.f);
-					myRotX = 120.f;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-			}
-
-			else if (360 >= myRotX && myRotX >= 241)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == 241)
-				{
-					myRot = FRotator(0.f, 0.f, 240.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-			}
-		}
-
-		/// <summary>
-		/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/// </summary> 
-
-
-		if (player->playerMove->d == true)
-		{
-			if (0 <= myRotX && myRotX <= 119)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == 119)
-				{
-					myRot = FRotator(0.f, 0.f, 120.f);
-					SetActorRotation(myRot);
-					myRotX = 120.f;
-					player->playerMove->d = false;
-				}
-
-			}
-
-			else if (120 <= myRotX && myRotX <= 239)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == 239)
-				{
-					myRot = FRotator(0.f, 0.f, 240.f);
-					SetActorRotation(myRot);
-					myRotX = 240.f;
-					player->playerMove->d = false;
-				}
-
-			}
-
-			else if (240 <= myRotX && myRotX <= 359)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == 359)
-				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-
-			else if (-120 <= myRotX && myRotX <= -1)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == -1)
-				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-
-			else if (-240 <= myRotX && myRotX <= -121)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == -121)
-				{
-					myRot = FRotator(0.f, 0.f, -120.f);
-					myRotX = -120.f;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-
-			else if (-360 <= myRotX && myRotX <= -241)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == -241)
-				{
-					myRot = FRotator(0.f, 0.f, -240.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-		}
-
 	}
 }

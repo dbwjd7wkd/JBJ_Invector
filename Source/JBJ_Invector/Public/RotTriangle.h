@@ -29,6 +29,8 @@ public:
 
 	void Rot();
 
+	void RotXReset();
+
 public:
 
 	UPROPERTY()

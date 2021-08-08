@@ -31,15 +31,17 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "EnemyFactory")
 		TSubclassOf<class ALeft_Pad> leftPadFactory;
 	UPROPERTY(EditDefaultsOnly, Category = "EnemyFactory")
+		TSubclassOf<class ARight_Pad> rightPadFactory;
+	UPROPERTY(EditDefaultsOnly, Category = "EnemyFactory")
+		TSubclassOf<class AUp_Pad> upPadFactory;
+	UPROPERTY(EditDefaultsOnly, Category = "EnemyFactory")
 		TSubclassOf<class ADown_Pad> downPadFactory;
 	UPROPERTY(EditDefaultsOnly, Category = "EnemyFactory")
 		TSubclassOf<class ASpaceBar_Pad> spacePadFactory;
 
+	UPROPERTY(EditAnywhere, Category = "CreateTime")
+		float createTime = 1.47f;
+
 	UPROPERTY()
 		float currentTime = 0;
-
-	UPROPERTY()
-	int32 check = 0;
-
-	bool isJump = true;
 };

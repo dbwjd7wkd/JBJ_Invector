@@ -24,9 +24,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
-		class UBoxComponent* boxComp;
-
-	UPROPERTY(VisibleAnywhere, Category = "Component")
 		class UBoxComponent* boxCompPerfect;
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
@@ -56,34 +53,10 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, Category = "Setting")
-		float speed = 1000;
+		float speed = 1500;
 
 	UPROPERTY()
 		class AActor* target;
 
 	FVector v;
-
-public:
-	UPROPERTY()
-		class AJBJPlayer* player;
-
-	UPROPERTY()
-		FRotator myRot;
-
-	UPROPERTY()
-		FRotator plusRot;
-
-	UPROPERTY()
-		FRotator minusRot;
-
-	UPROPERTY()
-		FRotator desRot = FRotator(0.f, 0.f, 120);
-
-	UPROPERTY()
-		FTimerHandle createTimer;
-
-	UPROPERTY()
-		float idleTime = 1.f;
-
-	void Rot();
 };

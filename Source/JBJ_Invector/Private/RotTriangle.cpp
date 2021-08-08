@@ -4,8 +4,11 @@
 #include "RotTriangle.h"
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
+#include "PadManager.h"
 #include "JBJ_Invector.h"
 #include <Kismet/GameplayStatics.h>
+#include "TimerManager.h"
+
 // Sets default values
 ARotTriangle::ARotTriangle()
 {
@@ -229,5 +232,11 @@ void ARotTriangle::Rot()
 		}
 		
 	}
+}
+
+void ARotTriangle::RotXReset()
+{
+	PRINTLOG(TEXT("muyaho"));
+	GetWorld()->GetTimerManager().ClearTimer(createTimer);
 }
 

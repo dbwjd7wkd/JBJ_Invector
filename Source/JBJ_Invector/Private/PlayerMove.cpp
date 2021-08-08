@@ -120,8 +120,7 @@ void UPlayerMove::UpArrowKey()
 {
 	// ↑ : 발판클릭, 제자리점프
 	up = true;
-	PRINTLOG(TEXT("%f"), currentTime);
-	//PRINTLOG(TEXT("up"));
+	PRINTLOG(TEXT("up"));
 }
 
 void UPlayerMove::DownArrowKey()
@@ -360,7 +359,7 @@ void UPlayerMove::ReleaseUpArrowKey()
 {
 	// ↑ : 발판클릭, 제자리점프
 	//up = false;
-	//PRINTLOG(TEXT("Release up"));
+	PRINTLOG(TEXT("Release up"));
 }
 
 void UPlayerMove::ReleaseDownArrowKey()
