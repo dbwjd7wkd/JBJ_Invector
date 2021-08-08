@@ -31,7 +31,11 @@ void ARotTriangle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Rot();
+	if (player->playerMove->section == 0) 
+	{
+		Rot();
+	}
+
 }
 
 void ARotTriangle::Rot()

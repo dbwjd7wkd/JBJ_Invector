@@ -74,7 +74,7 @@ public:
 
 	// 구간 기억을 위한 속성
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadWrite)
-		float section = 1; // 일반구간: 0, 점프구간: 1
+		float section = 0; // 일반구간: 0, 점프구간: 1
 
 	// 일반구간에서 a, d키 누르면 회전할 때 필요한 속성
 	UPROPERTY()
