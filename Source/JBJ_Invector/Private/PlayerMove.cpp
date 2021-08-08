@@ -161,6 +161,7 @@ void UPlayerMove::AKey()
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
 
 	a = true;
+	aa = true;
 	myA = true;
 	PRINTLOG(TEXT("A"));
 
@@ -185,6 +186,7 @@ void UPlayerMove::DKey()
 	// d : 오른쪽으로 돌기, 오른쪽으로 점프
 
 	d = true;
+	dd = true;
 	myD = true;
 	PRINTLOG(TEXT("D"));
 
@@ -241,19 +243,10 @@ void UPlayerMove::MoveToTarget()
 	// 1. 방향이 필요 direction = target - me
 	FVector myLocation = me->GetActorLocation();
 
-	//if (a == true)
-	//{
-	//	targetLocation = me->cube1->GetComponentLocation();
-	//}
-	//else if (d == true)
-	//{
-	//	targetLocation = me->cube2->GetComponentLocation();
-	//}
 	float y = me->GetTransform().GetRelativeTransform(targetTransform).GetLocation().Y; // targetTransform 은 a 키를 누르면 갱신됨
 	float x = me->GetTransform().GetRelativeTransform(targetTransform).GetLocation().X;
 	float z = me->GetTransform().GetRelativeTransform(targetTransform).GetLocation().Z;
 	PRINTLOG(TEXT("dirX: %f dirY: %f dirZ: %f"), x, y, z);
-
 
 	direction = targetLocation - myLocation;
 
@@ -322,6 +315,11 @@ void UPlayerMove::RotateToTarget()
 	//{
 	//	me->bodyMesh->SetRelativeRotation(FRotator(0, 0, 20));
 	//}
+
+}
+
+void UPlayerMove::AccelerateHorizontally()
+{
 
 }
 
