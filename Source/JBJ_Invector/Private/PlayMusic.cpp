@@ -43,6 +43,7 @@ void APlayMusic::OnCollisionEnter(UPrimitiveComponent* OverlappedComponent, AAct
 		if (overlapCheck == false)
 		{
 			UGameplayStatics::PlaySound2D(GetWorld(), playMusic);
+			overlapCheck = true;
 		}
 	}
 }
