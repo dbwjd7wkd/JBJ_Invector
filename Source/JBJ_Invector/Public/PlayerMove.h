@@ -45,6 +45,7 @@ public:
 	void PlayerRot();
 	void MoveToTarget();
 	void RotateToTarget();
+	void AccelerateHorizontally();
 
 	void ReleaseUpArrowKey();
 	void ReleaseDownArrowKey();
@@ -66,14 +67,14 @@ public:
 	float speed = 1500;
 
 	// 방향키 입력 기억을 위한 속성
-	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false;
+	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false, aa = false, dd = false;
 	bool myA = false, myD = false;
 	float horizontal, vertical; // 사용 안함
 	float frame = 0;
 
 	// 구간 기억을 위한 속성
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadWrite)
-		float section = 0; // 일반구간: 0, 점프구간: 1
+		float section = 1; // 일반구간: 0, 점프구간: 1
 
 	// 일반구간에서 a, d키 누르면 회전할 때 필요한 속성
 	UPROPERTY()
