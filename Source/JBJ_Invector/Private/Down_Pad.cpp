@@ -7,6 +7,8 @@
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
 #include "Kismet/GameplayStatics.h"
+#include "JBJ_InvectorGameMode.h"
+#include "Kismet/GameplayStatics.h"
 // Sets default values
 ADown_Pad::ADown_Pad()
 {
@@ -52,7 +54,7 @@ void ADown_Pad::BeginPlay()
 
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
-	
+	myGameMode = Cast<AJBJ_InvectorGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 // Called every frame
@@ -79,7 +81,9 @@ void ADown_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, cl
 		{
 			if (player->playerMove->down == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
+				myGameMode->SetScorePerfect();
+
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				player->playerMove->down = false;
 			}
@@ -96,7 +100,8 @@ void ADown_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, clas
 		{
 			if (player->playerMove->down == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
+				myGameMode->SetScoreGreat();
 
 				PRINTLOG(TEXT("Good!!!"));
 				player->playerMove->down = false;
@@ -114,7 +119,9 @@ void ADown_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class 
 		{
 			if (player->playerMove->down == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
+				myGameMode->SetScoreBad();
+
 				PRINTLOG(TEXT("Bad T.T"));
 				player->playerMove->down = false;
 			}

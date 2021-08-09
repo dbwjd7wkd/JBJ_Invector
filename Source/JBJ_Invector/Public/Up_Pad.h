@@ -26,6 +26,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 		class UBoxComponent* boxCompPerfect;
 
+	UPROPERTY()
+		class AJBJ_InvectorGameMode* myGameMode;
+
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 		class UBoxComponent* boxCompGreat;
 

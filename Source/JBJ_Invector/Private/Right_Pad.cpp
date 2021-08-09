@@ -7,6 +7,8 @@
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
 #include "Kismet/GameplayStatics.h"
+#include "JBJ_InvectorGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ARight_Pad::ARight_Pad()
@@ -47,6 +49,8 @@ void ARight_Pad::BeginPlay()
 		v.Normalize();
 		v *= speed;
 	}
+
+	myGameMode = Cast<AJBJ_InvectorGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 // Called every frame
@@ -66,7 +70,9 @@ void ARight_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, c
 	{
 			if (player->playerMove->right == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
+				myGameMode->SetScorePerfect();
+
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				overlapCheck = true;
 				player->playerMove->right = false;
@@ -83,7 +89,9 @@ void ARight_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, cla
 	{
 			if (player->playerMove->right == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
+				myGameMode->SetScoreGreat();
+
 				PRINTLOG(TEXT("Good!!!"));
 				overlapCheck = true;
 				player->playerMove->right = false;
@@ -101,7 +109,9 @@ void ARight_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class
 		
 			if (player->playerMove->right == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
+				myGameMode->SetScoreBad();
+
 				PRINTLOG(TEXT("Bad T.T"));
 				overlapCheck = true;
 				player->playerMove->right = false;

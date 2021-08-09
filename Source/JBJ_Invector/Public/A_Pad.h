@@ -22,6 +22,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY()
+	class AJBJ_InvectorGameMode* myGameMode;
+
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 		class UBoxComponent* boxComp;
 

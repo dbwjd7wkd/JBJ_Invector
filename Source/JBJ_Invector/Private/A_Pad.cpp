@@ -7,6 +7,8 @@
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
 #include "Kismet/GameplayStatics.h"
+#include "JBJ_InvectorGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -28,7 +30,6 @@ AA_Pad::AA_Pad()
 	boxCompBad2->SetupAttachment(boxComp);
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	meshComp->SetupAttachment(boxComp);
-
 
 }
 
@@ -54,7 +55,7 @@ void AA_Pad::BeginPlay()
 
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
-	
+	myGameMode = Cast<AJBJ_InvectorGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 // Called every frame
@@ -81,7 +82,8 @@ void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class
 		{
 			if (player->playerMove->a == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
+				myGameMode->SetScorePerfect();
 
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				overlapCheck = true;
@@ -100,7 +102,8 @@ void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, class A
 		{
 			if (player->playerMove->a == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
+				myGameMode->SetScoreGreat();
 
 				PRINTLOG(TEXT("Good!!!"));
 				overlapCheck = true;
@@ -119,7 +122,8 @@ void AA_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class AAc
 		{
 			if (player->playerMove->a == true)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
+				myGameMode->SetScoreBad();
 
 				PRINTLOG(TEXT("Bad T.T"));
 				overlapCheck = true;

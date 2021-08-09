@@ -14,6 +14,8 @@ class AJBJ_InvectorGameMode : public AGameModeBase
 public:
 	AJBJ_InvectorGameMode();
 
+	virtual void Tick(float DeltaTime) override;
+
 public:
 	UFUNCTION(Category = Score, BlueprintCallable)
 	void AddScore(int32 value);
@@ -40,6 +42,11 @@ public:
 	FString GetIsGoodStr();
 
 public:
+	void SetScorePerfect();
+	void SetScoreGreat();
+	void SetScoreBad();
+
+public:
 	UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
 	int32 score;
 
@@ -50,7 +57,28 @@ public:
 	int32 combo;
 
 	UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
+	int32 multiply;
+
+	UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
 	FString isGoodStr;
+
+	UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
+	float currentTime = 0;
+
+	UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
+	bool view = false;
+
+	//UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
+	//int32 viewisGoodStr = 0;
+
+	//UPROPERTY(EditAnywhere, Category = Score, BlueprintReadWrite)
+	//int32 preViewisGoodStr = 0;
+
+	//UPROPERTY(EditAnywhere, Category = Score)
+	//class UUserWidget* wbp_play;
+
+	//UPROPERTY(EditAnywhere, Category = Score)
+	//	TSubclassOf<class UUserWidget> WidgetClass;
 };
 
 
