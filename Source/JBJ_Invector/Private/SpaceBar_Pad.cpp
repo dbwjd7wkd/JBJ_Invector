@@ -27,6 +27,8 @@ ASpaceBar_Pad::ASpaceBar_Pad()
 	boxCompBad2->SetupAttachment(boxComp);
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	meshComp->SetupAttachment(boxComp);
+
+
 }
 
 // Called when the game starts or when spawned
@@ -51,7 +53,7 @@ void ASpaceBar_Pad::BeginPlay()
 
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
-	myRot = GetActorRotation();
+	
 }
 
 // Called every frame
@@ -65,8 +67,8 @@ void ASpaceBar_Pad::Tick(float DeltaTime)
 
 		SetActorLocation(P, true);
 	}
-
-	//Rot();
+	myRot = GetActorRotation();
+	Rot();
 
 }
 
@@ -133,7 +135,7 @@ void ASpaceBar_Pad::Rot()
 	if (player)
 	{
 
-		if (player->playerMove->aa == true)
+		if (player->playerMove->a == true)
 		{
 			if (0 >= myRotX && myRotX >= -119)
 			{
@@ -227,7 +229,7 @@ void ASpaceBar_Pad::Rot()
 		/// </summary> 
 
 
-		if (player->playerMove->dd == true)
+		if (player->playerMove->d == true)
 		{
 			if (0 <= myRotX && myRotX <= 119)
 			{
@@ -318,5 +320,6 @@ void ASpaceBar_Pad::Rot()
 
 	}
 }
+
 
 

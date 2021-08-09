@@ -27,6 +27,8 @@ ALeft_Pad::ALeft_Pad()
 	boxCompBad2->SetupAttachment(boxComp);
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	meshComp->SetupAttachment(boxComp);
+
+
 }
 
 // Called when the game starts or when spawned
@@ -51,7 +53,7 @@ void ALeft_Pad::BeginPlay()
 
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
-	myRot = GetActorRotation();
+	
 }
 
 // Called every frame
@@ -65,7 +67,7 @@ void ALeft_Pad::Tick(float DeltaTime)
 
 		SetActorLocation(P, true);
 	}
-
+	myRot = GetActorRotation();
 	Rot();
 }
 
@@ -130,7 +132,7 @@ void ALeft_Pad::Rot()
 	if (player)
 	{
 
-		if (player->playerMove->aa == true)
+		if (player->playerMove->a == true)
 		{
 			if (0 >= myRotX && myRotX >= -119)
 			{
@@ -224,7 +226,7 @@ void ALeft_Pad::Rot()
 		/// </summary> 
 
 
-		if (player->playerMove->dd == true)
+		if (player->playerMove->d == true)
 		{
 			if (0 <= myRotX && myRotX <= 119)
 			{

@@ -28,6 +28,8 @@ AA_Pad::AA_Pad()
 	boxCompBad2->SetupAttachment(boxComp);
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	meshComp->SetupAttachment(boxComp);
+
+
 }
 
 // Called when the game starts or when spawned
@@ -52,7 +54,7 @@ void AA_Pad::BeginPlay()
 
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
-	myRot = GetActorRotation();
+	
 }
 
 // Called every frame
@@ -66,7 +68,7 @@ void AA_Pad::Tick(float DeltaTime)
 
 		SetActorLocation(P, true);
 	}
-
+	myRot = GetActorRotation();
 	Rot();
 }
 
@@ -83,7 +85,7 @@ void AA_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class
 
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				overlapCheck = true;
-				player->playerMove->a = false;
+				
 			}
 		}
 	}
@@ -102,7 +104,7 @@ void AA_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, class A
 
 				PRINTLOG(TEXT("Good!!!"));
 				overlapCheck = true;
-				player->playerMove->a = false;
+				
 			}
 		}
 	}
@@ -121,7 +123,7 @@ void AA_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class AAc
 
 				PRINTLOG(TEXT("Bad T.T"));
 				overlapCheck = true;
-				player->playerMove->a = false;
+				
 			}
 		}
 	}
@@ -134,7 +136,7 @@ void AA_Pad::Rot()
 	if (player)
 	{
 
-		if (player->playerMove->aa == true)
+		if (player->playerMove->a == true)
 		{
 			if (0 >= myRotX && myRotX >= -119)
 			{
@@ -228,7 +230,7 @@ void AA_Pad::Rot()
 		/// </summary> 
 
 
-		if (player->playerMove->dd == true)
+		if (player->playerMove->d == true)
 		{
 			if (0 <= myRotX && myRotX <= 119)
 			{

@@ -7,6 +7,8 @@
 #include "Down_Pad.h"
 #include "Left_Pad.h"
 #include "SpaceBar_Pad.h"
+#include "Kismet/GameplayStatics.h"
+#include "JBJPlayer.h"
 
 // Sets default values
 APadManager_2::APadManager_2()
@@ -21,6 +23,14 @@ void APadManager_2::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	target = UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass());
+
+	if (target)
+	{
+		v = FVector::ForwardVector * speed;
+		v.Normalize();
+		v *= speed;
+	}
 }
 
 // Called every frame
@@ -30,9 +40,16 @@ void APadManager_2::Tick(float DeltaTime)
 
 	currentTime += DeltaTime;
 
+	if (target)
+	{
+		FVector P = GetActorLocation() + FVector(v.X, 0.0f, 0.0f) * DeltaTime;
+
+		SetActorLocation(P, true);
+	}
+
 	if (check == 0)
 	{
-		if (currentTime >= 8.763447)
+		if (currentTime >= 12.687696)
 		{
 			auto leftpad = GetWorld()->SpawnActor<ALeft_Pad>(leftPadFactory, GetTransform());
 			check = 1;

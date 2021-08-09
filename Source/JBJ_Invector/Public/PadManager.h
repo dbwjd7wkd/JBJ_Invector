@@ -37,9 +37,17 @@ public:
 
 	UPROPERTY()
 		float currentTime = 0;
-
 	UPROPERTY()
 	int32 check = 0;
 
 	bool isJump = true;
+
+public:
+	UPROPERTY(EditAnywhere, Category = "Setting")
+		float speed = 0;
+
+	UPROPERTY()
+		class AActor* target;
+
+	FVector v;
 };
