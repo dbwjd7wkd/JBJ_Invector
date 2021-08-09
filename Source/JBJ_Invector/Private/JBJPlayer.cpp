@@ -18,10 +18,10 @@ AJBJPlayer::AJBJPlayer()
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 	// 카메라 컴포넌트 등록
-	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	camera->SetupAttachment(GetCapsuleComponent());
-	camera->SetRelativeLocation(FVector(-665.000000, 0.000000, 270.000000));
-	camera->SetRelativeRotation(FRotator(-20, 0, 0));
+	//camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	//camera->SetupAttachment(GetCapsuleComponent());
+	//camera->SetRelativeLocation(FVector(-665.000000, 0.000000, 270.000000));
+	//camera->SetRelativeRotation(FRotator(-20, 0, 0));
 
 	// 메시 컴포넌트 등록
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
@@ -32,13 +32,13 @@ AJBJPlayer::AJBJPlayer()
 	// cube1, cube2 컴포넌트 등록
 	cube1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube1"));
 	cube1->SetupAttachment(GetCapsuleComponent());
-	cube1->SetRelativeLocation(FVector(100.000000, -350.000000, 40.000000));
+	cube1->SetRelativeLocation(FVector(100.000000, -150.000000, 40.000000));
 	cube1->SetRelativeScale3D(FVector(0.300000, 0.300000, 0.300000));
 	cube1->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	cube2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube2"));
 	cube2->SetupAttachment(GetCapsuleComponent());
-	cube2->SetRelativeLocation(FVector(100.000000, 350.000000, 40.000000));
+	cube2->SetRelativeLocation(FVector(100.000000, 150.000000, 40.000000));
 	cube2->SetRelativeScale3D(FVector(0.300000, 0.300000, 0.300000));
 	cube2->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 

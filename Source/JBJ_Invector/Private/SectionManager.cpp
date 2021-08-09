@@ -42,7 +42,11 @@ void ASectionManager::OnCollisionPlayer(UPrimitiveComponent* OverlappedComp, AAc
 	{
 		float st = player->playerMove->section;
 		if(st == 0) player->playerMove->section = 1;
-		else if(st == 1) player->playerMove->section = 0;
+		else if (st == 1)
+		{
+			player->playerMove->section = 0;
+			player->playerMove->jumpSection += 1;
+		}
 	}
 	
 }

@@ -28,13 +28,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+public:
 	//PlayerMove 컴포넌트 추가
 	UPROPERTY(EditAnywhere, Category = "PlayerMove", BlueprintReadWrite)
 		class UPlayerMove* playerMove;
 
 	// Camera
-	UPROPERTY(EditAnywhere, Category = FPSCamera, BlueprintReadWrite)
-		class UCameraComponent* camera;
+	//UPROPERTY(EditAnywhere, Category = FPSCamera, BlueprintReadWrite)
+	//	class UCameraComponent* camera;
 
 	// StaticMesh
 	UPROPERTY(EditAnywhere, Category = "BodyMesh", BlueprintReadWrite)

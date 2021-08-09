@@ -153,7 +153,7 @@ void UPlayerMove::SpaceBar()
 	PRINTLOG(TEXT("space bar"));
 	float check = me->GetActorLocation().X;
 	PRINTLOG(TEXT("%f"), check);
-
+	
 	//PRINTLOG(TEXT("KKung!: %f"), frame);
 }
 
@@ -173,7 +173,7 @@ void UPlayerMove::AKey()
 		//me->Jump();
 		targetTransform = me->cube1->GetComponentTransform();
 		targetLocation = me->cube1->GetComponentLocation();
-		targetRotator = FRotator(0, 0, -20);
+		targetRotator = FRotator(-45, 0, -45);
 	}
 	else if (section == 0)
 	{
@@ -198,7 +198,7 @@ void UPlayerMove::DKey()
 		//me->Jump();
 		targetTransform = me->cube2->GetComponentTransform();
 		targetLocation = me->cube2->GetComponentLocation();
-		targetRotator = FRotator(0, 0, 20);
+		targetRotator = FRotator(-45, 0, 45);
 	}
 	else if (section == 0)
 	{
@@ -254,7 +254,7 @@ void UPlayerMove::MoveToTarget()
 	// 2. 이동하고 싶다.
 	//me->GetCharacterMovement()->AddImpulse(direction * 8);
 	//me->GetCharacterMovement()->AddImpulse(FVector(direction.X, direction.Y, 0) * 8);
-	me->GetCharacterMovement()->AddImpulse(FVector(direction.X, direction.Y, 0) * 60);
+	me->GetCharacterMovement()->AddImpulse(FVector(0, direction.Y, 0) * 200);
 
 	// 3. 이동하는 방향으로 몸체를 회전하고싶다.
 	UPlayerMove::RotateToTarget();
@@ -265,8 +265,8 @@ void UPlayerMove::MoveToTarget()
 		targetRotator = FRotator(0, 0, 0);
 		// 몸체 방향 원래대로 놓기
 		//me->bodyMesh->SetRelativeRotation(FRotator(0, 0, 0));
-		// (점프 끝내기 위해) 아래 방향으로 힘 가하기
-		me->GetCharacterMovement()->AddImpulse(FVector(-direction.X*2, -direction.Y*2, direction.Z) * 700);//700
+		// (점프 끝내기 위해) 아래 방향으로 힘 가하기 700 250
+		me->GetCharacterMovement()->AddImpulse(FVector(0, -direction.Y*700, direction.Z*250));//700
 		//me->GetCharacterMovement()->AddForce(FVector(0, 0, 300));
 		//me->GetCharacterMovement()->AddImpulse(FVector(-direction.X, -direction.Y, direction.Z) * 1);
 
@@ -386,6 +386,29 @@ void UPlayerMove::Vertical(float value)
 
 void UPlayerMove::Jump()
 {
+	jumpCount++;
+
+	if (jumpSection <= 2) // 점프구간 첫번째 또는 두번째 일 때
+	{
+		if (1 <= jumpCount && jumpCount <= 2)
+		{
+			me->GetCharacterMovement()->GravityScale = 1.7f;
+		}
+		else if (3 <= jumpCount && jumpCount <= 5)
+		{
+			me->GetCharacterMovement()->GravityScale = 2.3f;
+		}
+
+		if (jumpCount >= 5)
+		{
+			jumpCount = 0;
+		}
+	}
+	else if (jumpSection >= 3) // 점프구간 세번째 일 때
+	{
+		me->GetCharacterMovement()->GravityScale = 2.3f;
+	}
+
 	me->Jump();
 	PRINTLOG(TEXT("Jump"));
 }
