@@ -56,6 +56,8 @@ void ASpaceBar_Pad::BeginPlay()
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
 	myGameMode = Cast<AJBJ_InvectorGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	
 }
 
 // Called every frame
@@ -71,7 +73,7 @@ void ASpaceBar_Pad::Tick(float DeltaTime)
 	}
 	myRot = GetActorRotation();
 	Rot();
-
+	
 }
 
 void ASpaceBar_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -136,13 +138,14 @@ void ASpaceBar_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, cl
 
 void ASpaceBar_Pad::Rot()
 {
-	int32 myRotX = myRot.Roll;
+	
 
 	if (player)
 	{
 
 		if (player->playerMove->a == true)
 		{
+			myRotX = myRot.Roll;
 			if (0 >= myRotX && myRotX >= -119)
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
@@ -237,6 +240,7 @@ void ASpaceBar_Pad::Rot()
 
 		if (player->playerMove->d == true)
 		{
+			myRotX = myRot.Roll;
 			if (0 <= myRotX && myRotX <= 119)
 			{
 				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 120.f), 20 * GetWorld()->DeltaTimeSeconds);

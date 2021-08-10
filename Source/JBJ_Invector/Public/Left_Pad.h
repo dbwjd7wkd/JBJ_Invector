@@ -92,4 +92,7 @@ public:
 
 	UPROPERTY()
 	bool checkROt = true;
+
+	UPROPERTY()
+	int32 myRotX = myRot.Roll;
 };

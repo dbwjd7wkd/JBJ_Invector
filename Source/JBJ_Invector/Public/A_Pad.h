@@ -87,6 +87,8 @@ public:
 
 	UPROPERTY()
 		float idleTime = 1.f;
+	UPROPERTY()
+	int32 myRotX = myRot.Roll;
 
 	void Rot();
 };

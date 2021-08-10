@@ -89,4 +89,7 @@ public:
 		float idleTime = 1.f;
 
 	void Rot();
+
+	UPROPERTY()
+	int32 myRotX = myRot.Roll;
 };

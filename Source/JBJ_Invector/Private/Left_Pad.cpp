@@ -56,6 +56,9 @@ void ALeft_Pad::BeginPlay()
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
 
 	myGameMode = Cast<AJBJ_InvectorGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	myRot = GetActorRotation();
+
+	
 }
 
 // Called every frame
@@ -69,7 +72,7 @@ void ALeft_Pad::Tick(float DeltaTime)
 
 		SetActorLocation(P, true);
 	}
-	myRot = GetActorRotation();
+	
 	Rot();
 }
 
@@ -135,194 +138,199 @@ void ALeft_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class 
 
 void ALeft_Pad::Rot()
 {
-	int32 myRotX = myRot.Roll;
+	
 
-	if (player)
+	if (player->playerMove->section == 0)
 	{
-
-		if (player->playerMove->a == true)
+		if (player)
 		{
-			if (0 >= myRotX && myRotX >= -119)
+
+			if (player->playerMove->a == true)
 			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == -119)
+				myRotX = myRot.Roll;
+				if (0 >= myRotX && myRotX >= -119)
 				{
-					myRot = FRotator(0.f, 0.f, -120.f);
-					myRotX = -120;
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->d = false;
+					if (myRotX == -119)
+					{
+						myRot = FRotator(0.f, 0.f, -120.f);
+						myRotX = -120;
+						SetActorRotation(myRot);
+						player->playerMove->a = false;
+					}
+
 				}
 
-			}
-
-			else if (-120 >= myRotX && myRotX >= -239)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == -239)
+				else if (-120 >= myRotX && myRotX >= -239)
 				{
-					myRot = FRotator(0.f, 0.f, -240.f);
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, -240), 20 * GetWorld()->DeltaTimeSeconds);
 					SetActorRotation(myRot);
-					myRotX = -240;
-					player->playerMove->a = false;
+					player->playerMove->d = false;
+					if (myRotX == -239)
+					{
+						myRot = FRotator(0.f, 0.f, -240.f);
+						SetActorRotation(myRot);
+						myRotX = -240;
+						player->playerMove->a = false;
+					}
+
 				}
 
-			}
-
-			else if (-240 >= myRotX && myRotX >= -359)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == -359)
+				else if (-240 >= myRotX && myRotX >= -359)
 				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0.f;
+					myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
 					SetActorRotation(myRot);
-					player->playerMove->a = false;
+					player->playerMove->d = false;
+					if (myRotX == -359)
+					{
+						myRot = FRotator(0.f, 0.f, 0.f);
+						myRotX = 0.f;
+						SetActorRotation(myRot);
+						player->playerMove->a = false;
+					}
+				}
+
+				else if (120 >= myRotX && myRotX >= 1)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->d = false;
+					if (myRotX == 1)
+					{
+						myRot = FRotator(0.f, 0.f, 0.f);
+						myRotX = 0;
+						SetActorRotation(myRot);
+						player->playerMove->a = false;
+					}
+				}
+
+				else if (240 >= myRotX && myRotX >= 121)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->d = false;
+					if (myRotX == 121)
+					{
+						myRot = FRotator(0.f, 0.f, 120.f);
+						myRotX = 120.f;
+						SetActorRotation(myRot);
+						player->playerMove->a = false;
+					}
+				}
+
+				else if (360 >= myRotX && myRotX >= 241)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->d = false;
+					if (myRotX == 241)
+					{
+						myRot = FRotator(0.f, 0.f, 240.f);
+						myRotX = 0.f;
+						SetActorRotation(myRot);
+						player->playerMove->a = false;
+					}
 				}
 			}
 
-			else if (120 >= myRotX && myRotX >= 1)
+			/// <summary>
+			/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			/// </summary> 
+
+
+			if (player->playerMove->d == true)
 			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == 1)
+				myRotX = myRot.Roll;
+				if (0 <= myRotX && myRotX <= 119)
 				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0;
+					myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
 					SetActorRotation(myRot);
 					player->playerMove->a = false;
+					if (myRotX == 119)
+					{
+						myRot = FRotator(0.f, 0.f, 120.f);
+						SetActorRotation(myRot);
+						myRotX = 120.f;
+						player->playerMove->d = false;
+					}
+
+				}
+
+				else if (120 <= myRotX && myRotX <= 239)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->a = false;
+					if (myRotX == 239)
+					{
+						myRot = FRotator(0.f, 0.f, 240.f);
+						SetActorRotation(myRot);
+						myRotX = 240.f;
+						player->playerMove->d = false;
+					}
+
+				}
+
+				else if (240 <= myRotX && myRotX <= 359)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->a = false;
+					if (myRotX == 359)
+					{
+						myRot = FRotator(0.f, 0.f, 0.f);
+						myRotX = 0.f;
+						SetActorRotation(myRot);
+						player->playerMove->d = false;
+					}
+				}
+
+				else if (-120 <= myRotX && myRotX <= -1)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->a = false;
+					if (myRotX == -1)
+					{
+						myRot = FRotator(0.f, 0.f, 0.f);
+						myRotX = 0;
+						SetActorRotation(myRot);
+						player->playerMove->d = false;
+					}
+				}
+
+				else if (-240 <= myRotX && myRotX <= -121)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->a = false;
+					if (myRotX == -121)
+					{
+						myRot = FRotator(0.f, 0.f, -120.f);
+						myRotX = -120.f;
+						SetActorRotation(myRot);
+						player->playerMove->d = false;
+					}
+				}
+
+				else if (-360 <= myRotX && myRotX <= -241)
+				{
+					myRot = FMath::Lerp(myRot, FRotator(0, 0, -240.f), 20 * GetWorld()->DeltaTimeSeconds);
+					SetActorRotation(myRot);
+					player->playerMove->a = false;
+					if (myRotX == -241)
+					{
+						myRot = FRotator(0.f, 0.f, -240.f);
+						myRotX = 0.f;
+						SetActorRotation(myRot);
+						player->playerMove->d = false;
+					}
 				}
 			}
 
-			else if (240 >= myRotX && myRotX >= 121)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == 121)
-				{
-					myRot = FRotator(0.f, 0.f, 120.f);
-					myRotX = 120.f;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-			}
-
-			else if (360 >= myRotX && myRotX >= 241)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->d = false;
-				if (myRotX == 241)
-				{
-					myRot = FRotator(0.f, 0.f, 240.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->a = false;
-				}
-			}
 		}
-
-		/// <summary>
-		/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/// </summary> 
-
-
-		if (player->playerMove->d == true)
-		{
-			if (0 <= myRotX && myRotX <= 119)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 120.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == 119)
-				{
-					myRot = FRotator(0.f, 0.f, 120.f);
-					SetActorRotation(myRot);
-					myRotX = 120.f;
-					player->playerMove->d = false;
-				}
-
-			}
-
-			else if (120 <= myRotX && myRotX <= 239)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 240.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == 239)
-				{
-					myRot = FRotator(0.f, 0.f, 240.f);
-					SetActorRotation(myRot);
-					myRotX = 240.f;
-					player->playerMove->d = false;
-				}
-
-			}
-
-			else if (240 <= myRotX && myRotX <= 359)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0.f, 0.f, 0.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == 359)
-				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-
-			else if (-120 <= myRotX && myRotX <= -1)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, 0), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == -1)
-				{
-					myRot = FRotator(0.f, 0.f, 0.f);
-					myRotX = 0;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-
-			else if (-240 <= myRotX && myRotX <= -121)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -120), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == -121)
-				{
-					myRot = FRotator(0.f, 0.f, -120.f);
-					myRotX = -120.f;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-
-			else if (-360 <= myRotX && myRotX <= -241)
-			{
-				myRot = FMath::Lerp(myRot, FRotator(0, 0, -240.f), 20 * GetWorld()->DeltaTimeSeconds);
-				SetActorRotation(myRot);
-				player->playerMove->a = false;
-				if (myRotX == -241)
-				{
-					myRot = FRotator(0.f, 0.f, -240.f);
-					myRotX = 0.f;
-					SetActorRotation(myRot);
-					player->playerMove->d = false;
-				}
-			}
-		}
-
 	}
 }
 
