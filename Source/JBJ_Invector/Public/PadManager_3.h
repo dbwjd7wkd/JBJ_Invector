@@ -44,7 +44,7 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, Category = "Setting")
-		float speed = 0;
+		float speed = 500;
 
 	UPROPERTY()
 		class AActor* target;

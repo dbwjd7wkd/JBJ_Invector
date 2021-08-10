@@ -3,6 +3,7 @@
 
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
+#include "JumpManager.h"
 #include <Camera/CameraComponent.h>
 #include <Components/CapsuleComponent.h>
 #include <Components/StaticMeshComponent.h>
@@ -44,6 +45,8 @@ AJBJPlayer::AJBJPlayer()
 
 	// Actor 를 이루는 컴포넌트를 붙이도록 한다.
 	playerMove = CreateDefaultSubobject<UPlayerMove>(TEXT("PlayerMove"));
+
+	jumpManager = CreateDefaultSubobject<UJumpManager>(TEXT("UJumpManager"));
 
 	// 동적으로 파일(애셋) 을 로드하여 할당하기
 	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh(TEXT("StaticMesh'/Game/TwinStick/Meshes/TwinStickUFO.TwinStickUFO'"));
