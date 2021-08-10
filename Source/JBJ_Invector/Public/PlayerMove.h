@@ -70,7 +70,8 @@ public:
 	// 발판에서 사용
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false, aa = false, dd = false;
 	// 플레이어에서 사용
-	bool myA = false, myD = false;
+	bool myA = false;
+	bool myD = false;
 	float horizontal, vertical; // 사용 안함
 
 	int32 jumpCount = 0;
