@@ -98,7 +98,7 @@ void APadManager_3::Tick(float DeltaTime)
 	{
 		if (currentTime >= 34.362972)
 		{
-			/*auto leftpad = GetWorld()->SpawnActor<ALeft_Pad>(leftPadFactory, GetTransform());*/
+			auto leftpad = GetWorld()->SpawnActor<ALeft_Pad>(leftPadFactory, GetTransform());
 			check = 6;
 		}
 	}
@@ -107,7 +107,7 @@ void APadManager_3::Tick(float DeltaTime)
 	{
 		if (currentTime >= 34.879650)
 		{
-			auto downpad = GetWorld()->SpawnActor<ADown_Pad>(downPadFactory, GetTransform());
+			/*auto downpad = GetWorld()->SpawnActor<ADown_Pad>(downPadFactory, GetTransform());*/
 			check = 7;
 		}
 	}
