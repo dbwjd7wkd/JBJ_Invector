@@ -240,6 +240,9 @@ void UPlayerMove::PlayerRot()
 
 void UPlayerMove::MoveToTarget()
 {
+	//me->GetCharacterMovement()->SetJumpAllowed(false);
+	/*UPlayerMove::Jump();*/
+
 	// 플레이어를 왼쪽으로 점프시키고 싶다.
 	// 1. 방향이 필요 direction = target - me
 	FVector myLocation = me->GetActorLocation();
@@ -254,7 +257,7 @@ void UPlayerMove::MoveToTarget()
 	// 2. 이동하고 싶다.
 	//me->GetCharacterMovement()->AddImpulse(direction * 8);
 	//me->GetCharacterMovement()->AddImpulse(FVector(direction.X, direction.Y, 0) * 8);
-	me->GetCharacterMovement()->AddImpulse(FVector(0, direction.Y, 0) * 200);
+	me->GetCharacterMovement()->AddImpulse(FVector(0, direction.Y, 0) * 50);
 
 	// 3. 이동하는 방향으로 몸체를 회전하고싶다.
 	UPlayerMove::RotateToTarget();
@@ -266,7 +269,7 @@ void UPlayerMove::MoveToTarget()
 		// 몸체 방향 원래대로 놓기
 		//me->bodyMesh->SetRelativeRotation(FRotator(0, 0, 0));
 		// (점프 끝내기 위해) 아래 방향으로 힘 가하기 700 250
-		me->GetCharacterMovement()->AddImpulse(FVector(0, -direction.Y*700, direction.Z*250));//700
+		me->GetCharacterMovement()->AddImpulse(FVector(0, -direction.Y*900, direction.Z*1000));//700
 		//me->GetCharacterMovement()->AddForce(FVector(0, 0, 300));
 		//me->GetCharacterMovement()->AddImpulse(FVector(-direction.X, -direction.Y, direction.Z) * 1);
 
