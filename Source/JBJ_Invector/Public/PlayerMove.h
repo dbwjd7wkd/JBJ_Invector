@@ -103,8 +103,8 @@ public:
 		FVector direction;
 
 	// camera shake
-	UPROPERTY(EditAnywhere, Category = "JBJCameraShake", BlueprintReadWrite)
-		TSubclassOf<class UMatineeCameraShake> JBJCameraShake;
+	//UPROPERTY(EditAnywhere, Category = "JBJCameraShake", BlueprintReadWrite)
+	//	TSubclassOf<class UMatineeCameraShake> JBJCameraShake;
 
 private:
 	UPROPERTY()
