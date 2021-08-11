@@ -50,9 +50,9 @@ void UPlayerMove::InitializeComponent()
 void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+	//PRINTLOG(TEXT("time: %d"), currentTime);
 	//frame += 1;
-	currentTime += DeltaTime;
+	//currentTime += 1;
 	// 계속 앞으로 이동
 	if (me)
 	{
@@ -66,14 +66,12 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	if (section == 1) // 점프구간
 	{
 		//speed = 3000;
+		speed2 = 10; // 가속스피드
 
-		if (myA == true)
+		if (myA == true || myD == true)
 		{
-			UPlayerMove::MoveToTarget();
-		}
-		else if (myD == true)
-		{
-			UPlayerMove::MoveToTarget();
+			/*UPlayerMove::MoveToTarget();*/
+			UPlayerMove::AccelerateHorizontally();
 		}
 
 	}
@@ -120,8 +118,8 @@ void UPlayerMove::UpArrowKey()
 {
 	// ↑ : 발판클릭, 제자리점프
 	up = true;
-	PRINTLOG(TEXT("%f"), currentTime);
-	//PRINTLOG(TEXT("up"));
+	//PRINTLOG(TEXT("%f"), currentTime);
+	PRINTLOG(TEXT("up"));
 }
 
 void UPlayerMove::DownArrowKey()
@@ -151,16 +149,13 @@ void UPlayerMove::SpaceBar()
 	// space bar : 짧게 또는 길게 빛 나오기
 	spaceBar = true;
 	PRINTLOG(TEXT("space bar"));
-	float check = me->GetActorLocation().X;
-	PRINTLOG(TEXT("%f"), check);
-	
-	//PRINTLOG(TEXT("KKung!: %f"), frame);
+	//float check = me->GetActorLocation().X;
+	//PRINTLOG(TEXT("%f"), check);
 }
 
 void UPlayerMove::AKey()
 {
 	// a : 왼쪽으로 돌기, 왼쪽으로 점프
-
 	a = true;
 	aa = true;
 	myA = true;
@@ -168,12 +163,17 @@ void UPlayerMove::AKey()
 
 	if (section == 1)
 	{
-		if (me->GetCharacterMovement()->IsFalling()) return;
+		if (boundary <= -1)
+		{
+			myA = false;
+			return;
+		}
+		boundary--;
 
-		//me->Jump();
 		targetTransform = me->cube1->GetComponentTransform();
 		targetLocation = me->cube1->GetComponentLocation();
 		targetRotator = FRotator(-45, 0, -45);
+
 	}
 	else if (section == 0)
 	{
@@ -193,12 +193,17 @@ void UPlayerMove::DKey()
 
 	if (section == 1)
 	{
-		if (me->GetCharacterMovement()->IsFalling()) return;
+		if (boundary >= 1)
+		{
+			myA = false;
+			return;
+		}
+		boundary++;
 
-		//me->Jump();
 		targetTransform = me->cube2->GetComponentTransform();
 		targetLocation = me->cube2->GetComponentLocation();
 		targetRotator = FRotator(-45, 0, 45);
+
 	}
 	else if (section == 0)
 	{
@@ -219,7 +224,6 @@ void UPlayerMove::PlayerRot()
 	FRotator plusRot = myRot + desRot;
 
 	float myRotX = myRot.Roll;
-	PRINTLOG(TEXT("Rot.Roll: %f"), myRotX);
 
 	if (me)
 	{
@@ -242,7 +246,9 @@ void UPlayerMove::MoveToTarget()
 {
 	//me->GetCharacterMovement()->SetJumpAllowed(false);
 	/*UPlayerMove::Jump();*/
-
+	//mul1 = 50;
+	//mul2 = 900;
+	//mul3 = 1000;
 	// 플레이어를 왼쪽으로 점프시키고 싶다.
 	// 1. 방향이 필요 direction = target - me
 	FVector myLocation = me->GetActorLocation();
@@ -257,7 +263,7 @@ void UPlayerMove::MoveToTarget()
 	// 2. 이동하고 싶다.
 	//me->GetCharacterMovement()->AddImpulse(direction * 8);
 	//me->GetCharacterMovement()->AddImpulse(FVector(direction.X, direction.Y, 0) * 8);
-	me->GetCharacterMovement()->AddImpulse(FVector(0, direction.Y, 0) * 50);
+	me->GetCharacterMovement()->AddImpulse(FVector(0, direction.Y, 0) * 200);
 
 	// 3. 이동하는 방향으로 몸체를 회전하고싶다.
 	UPlayerMove::RotateToTarget();
@@ -269,7 +275,7 @@ void UPlayerMove::MoveToTarget()
 		// 몸체 방향 원래대로 놓기
 		//me->bodyMesh->SetRelativeRotation(FRotator(0, 0, 0));
 		// (점프 끝내기 위해) 아래 방향으로 힘 가하기 700 250
-		me->GetCharacterMovement()->AddImpulse(FVector(0, -direction.Y*900, direction.Z*1000));//700
+		me->GetCharacterMovement()->AddImpulse(FVector(0, -direction.Y*700, direction.Z*250));//700
 		//me->GetCharacterMovement()->AddForce(FVector(0, 0, 300));
 		//me->GetCharacterMovement()->AddImpulse(FVector(-direction.X, -direction.Y, direction.Z) * 1);
 
@@ -324,46 +330,42 @@ void UPlayerMove::RotateToTarget()
 
 void UPlayerMove::AccelerateHorizontally()
 {
-	// 플레이어를 왼쪽으로 점프시키고 싶다.
-// 1. 방향이 필요 direction = target - me
-	FVector myLocation = me->GetActorLocation();
+	// player 의 로컬좌표계로 바꾸기
+	//FTransform dTransform = me->GetTransform();
+	//dTransform.SetLocation(direction);
+	//float dy = me->GetTransform().GetRelativeTransform(dTransform).GetLocation().Y;
+	//direction = FVector(0, dy, 0);
+	//PRINTLOG(TEXT("x:%d y:%d z:%d"), direction.X, direction.Y, direction.Z);
 
-	float y = me->GetTransform().GetRelativeTransform(targetTransform).GetLocation().Y; // targetTransform 은 a 키를 누르면 갱신됨
-	//float x = me->GetTransform().GetRelativeTransform(targetTransform).GetLocation().X;
-	//float z = me->GetTransform().GetRelativeTransform(targetTransform).GetLocation().Z;
-	//PRINTLOG(TEXT("dirX: %f dirY: %f dirZ: %f"), x, y, z);
-
-	direction = targetLocation - myLocation;
-
-	// 2. 이동하고 싶다.
-	//me->GetCharacterMovement()->AddImpulse(direction * 8);
-	//me->GetCharacterMovement()->AddImpulse(FVector(direction.X, direction.Y, 0) * 8);
-	me->GetCharacterMovement()->AddImpulse(FVector(0, direction.Y, 0) * 60);
-
-	// 3. 이동하는 방향으로 몸체를 회전하고싶다.
+	// 움직이는 방향으로 몸체 방향 돌리기
 	UPlayerMove::RotateToTarget();
 
-	if (-200 <= y && y <= 200) //500
-	//if(!me->GetCharacterMovement()->IsFalling())
+	// 등속도로 왼쪽이나 오른쪽으로 이동
+	FVector myLocation = me->GetActorLocation();
+	direction = targetLocation - myLocation; // 목표 방향벡터
+	direction = FVector(0, direction.Y, 0); // 좌우로 움직이기위해 y좌표만 빼기
+
+	// speed2 = 점점빨라짐
+	speed2 += speed2 * 4;
+
+	// p = p0 + vt;
+	FVector P = myLocation + direction * speed2 * GetWorld()->DeltaTimeSeconds;
+	me->SetActorLocation(P, true);
+
+	// 목표 지점에 가까워지면 멈추기
+	float y = targetLocation.Y - myLocation.Y;
+	if ((-1 < y && y < 1))
 	{
+		// 방향 원래대로 놓기
 		targetRotator = FRotator(0, 0, 0);
-		// 몸체 방향 원래대로 놓기
-		//me->bodyMesh->SetRelativeRotation(FRotator(0, 0, 0));
-		// (점프 끝내기 위해) 아래 방향으로 힘 가하기
-		me->GetCharacterMovement()->AddImpulse(FVector(-direction.X * 2, -direction.Y * 2, direction.Z) * 700);//700
-		//me->GetCharacterMovement()->AddForce(FVector(0, 0, 300));
-		//me->GetCharacterMovement()->AddImpulse(FVector(-direction.X, -direction.Y, direction.Z) * 1);
 
-		//if (JBJCameraShake != NULL)
-		//{
-		//	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(JBJCameraShake, 1.0f);
-		//}
-
+		// 움직이기 끝
 		myA = false;
 		myD = false;
 
 		return;
 	}
+
 }
 
 void UPlayerMove::Horizontal(float value)

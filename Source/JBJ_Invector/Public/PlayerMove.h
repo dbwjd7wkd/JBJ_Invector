@@ -66,12 +66,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadOnly)
 	float speed = 1500;
 
+	float speed2 = 10;
+
 	// 방향키 입력 기억을 위한 속성
 	// 발판에서 사용
 	bool up = false, down = false, left = false, right = false, spaceBar = false, a = false, d = false, aa = false, dd = false;
 	// 플레이어에서 사용
 	bool myA = false;
 	bool myD = false;
+	int32 boundary = 0;
 	float horizontal, vertical; // 사용 안함
 
 	int32 jumpCount = 0;
