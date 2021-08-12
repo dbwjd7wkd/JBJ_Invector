@@ -4,6 +4,7 @@
 #include "A_Pad.h"
 #include <Components/BoxComponent.h>
 #include "JBJPlayer.h"
+#include "RotTriangle.h"
 #include "PlayerMove.h"
 #include "JBJ_Invector.h"
 #include "Kismet/GameplayStatics.h"
@@ -58,7 +59,7 @@ void AA_Pad::BeginPlay()
 	}
 
 	player = Cast<AJBJPlayer>(UGameplayStatics::GetActorOfClass(GetWorld(), AJBJPlayer::StaticClass()));
-
+	triangle = Cast<ARotTriangle>(UGameplayStatics::GetActorOfClass(GetWorld(), ARotTriangle::StaticClass()));
 	myGameMode = Cast<AJBJ_InvectorGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 
 	

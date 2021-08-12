@@ -62,10 +62,13 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, Category = "Setting")
-		float speed = 1000;
+		float speed = 1500;
 
 	UPROPERTY()
 		class AActor* target;
+
+	UPROPERTY()
+		class AActor* triangle;
 
 	FVector v;
 

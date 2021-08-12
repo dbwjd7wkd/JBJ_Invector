@@ -37,6 +37,12 @@ void APadManager_Right::Tick(float DeltaTime)
 
 	currentTime += DeltaTime;
 
+	if (target)
+	{
+		FVector P = GetActorLocation() + FVector(v.X, 0.0f, 0.0f) * DeltaTime;
+
+		SetActorLocation(P, true);
+	}
 
 	if (check == 0)
 	{

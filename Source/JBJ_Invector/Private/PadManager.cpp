@@ -98,7 +98,7 @@ void APadManager::Tick(float DeltaTime)
 		{
 			if (currentTime >= 30.455980)
 			{
-				/*auto downpad = GetWorld()->SpawnActor<ADown_Pad>(downPadFactory, GetTransform());*/
+				auto downpad = GetWorld()->SpawnActor<ADown_Pad>(downPadFactory, GetTransform());
 				check = 6;
 			}
 		}
