@@ -8,6 +8,7 @@
 //#include "A_Pad.h"
 #include <Kismet/GameplayStatics.h>
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UPlayerMove::UPlayerMove()
@@ -23,7 +24,6 @@ void UPlayerMove::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	//
 }
 
 void UPlayerMove::InitializeComponent()
@@ -50,9 +50,16 @@ void UPlayerMove::InitializeComponent()
 void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	//PRINTLOG(TEXT("time: %d"), currentTime);
-	//frame += 1;
-	//currentTime += 1;
+	PRINTLOG(TEXT("time: %f"), currentTime);
+	currentTime += DeltaTime;
+	if (currentTime >= 262.2)
+	{
+		speed = 3000;
+	}
+	else if (currentTime >= 276)
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), TEXT("Outro"));
+	}
 	// 계속 앞으로 이동
 	if (me)
 	{
