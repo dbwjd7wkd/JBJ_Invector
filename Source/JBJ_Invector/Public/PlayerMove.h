@@ -62,10 +62,13 @@ public:
 	void Jump();
 
 public:
-	// 필요속성 : 이동속도
-	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadOnly)
-	float speed = 1500;
+	// 현재 초(seconds)
+	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadWrite)
+		float currentTime = 0;
 
+	// 필요속성 : 이동속도
+	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadWrite)
+	float speed = 1500;
 	float speed2 = 10;
 
 	// 방향키 입력 기억을 위한 속성
@@ -118,5 +121,4 @@ private:
 
 	//UPROPERTY(VisibleAnywhere, Category = APad)
 	//	class AA_Pad* aPad;
-	float currentTime = 0;
 };

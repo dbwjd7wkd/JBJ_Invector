@@ -52,14 +52,14 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	PRINTLOG(TEXT("time: %f"), currentTime);
 	currentTime += DeltaTime;
-	if (currentTime >= 262.2)
-	{
-		speed = 3000;
-	}
-	else if (currentTime >= 276)
-	{
-		UGameplayStatics::OpenLevel(GetWorld(), TEXT("Outro"));
-	}
+	//if (currentTime >= 274.390015)
+	//{
+	//	speed = 3000;
+	//}
+	//else if (currentTime >= 278)
+	//{
+	//	UGameplayStatics::OpenLevel(GetWorld(), TEXT("Outro"));
+	//}
 	// 계속 앞으로 이동
 	if (me)
 	{

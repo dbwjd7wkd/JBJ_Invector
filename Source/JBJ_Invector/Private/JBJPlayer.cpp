@@ -24,11 +24,16 @@ AJBJPlayer::AJBJPlayer()
 	//camera->SetRelativeLocation(FVector(-665.000000, 0.000000, 270.000000));
 	//camera->SetRelativeRotation(FRotator(-20, 0, 0));
 
+	//GetMesh()->SetRelativeLocation(FVector(-42.000000, 0.000000, -66.000000));
+	//GetMesh()->SetRelativeRotation(FRotator(0, 0, 0));
+	//GetMesh()->SetRelativeScale3D(FVector(0.15, 0.15, 0.15));
+
 	// 메시 컴포넌트 등록
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
 	bodyMesh->SetupAttachment(GetCapsuleComponent());
-	bodyMesh->SetRelativeLocation(FVector(8.000000, 0.000000, -66.000000));
-	bodyMesh->SetRelativeRotation(FRotator(0, 0.000000, 0.000000));
+	bodyMesh->SetRelativeLocation(FVector(-42.000000, 0.000000, -66.000000));
+	bodyMesh->SetRelativeRotation(FRotator(0.000000, 0, 0.000000));
+	bodyMesh->SetRelativeScale3D(FVector(0.15, 0.15, 0.15));
 
 	// cube1, cube2 컴포넌트 등록
 	cube1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube1"));
@@ -49,7 +54,7 @@ AJBJPlayer::AJBJPlayer()
 	jumpManager = CreateDefaultSubobject<UJumpManager>(TEXT("UJumpManager"));
 
 	// 동적으로 파일(애셋) 을 로드하여 할당하기
-	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh(TEXT("StaticMesh'/Game/TwinStick/Meshes/TwinStickUFO.TwinStickUFO'"));
+	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh(TEXT("StaticMesh'/Game/YJ/Mesh/JBJPlayerStaticMesh.JBJPlayerStaticMesh'"));
 	
 	// 데이터로드가 성공했다면
 	if (tempMesh.Succeeded())
