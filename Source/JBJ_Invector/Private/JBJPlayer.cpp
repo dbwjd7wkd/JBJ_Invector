@@ -8,6 +8,7 @@
 #include <Components/CapsuleComponent.h>
 #include <Components/StaticMeshComponent.h>
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AJBJPlayer::AJBJPlayer()
@@ -35,6 +36,56 @@ AJBJPlayer::AJBJPlayer()
 	bodyMesh->SetRelativeRotation(FRotator(0.000000, 0, 0.000000));
 	bodyMesh->SetRelativeScale3D(FVector(0.15, 0.15, 0.15));
 
+	// 파티클 컴포넌트 등록
+	// 양옆
+	particle1 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle1"));
+	particle1->SetupAttachment(bodyMesh);
+	particle1->SetRelativeLocation(FVector(-800.000000, -40.000000, 193.000000));
+	particle1->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle1->SetRelativeScale3D(FVector(2.000000, 1.000000, 1.000000));
+	// 양옆
+	particle2 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle2"));
+	particle2->SetupAttachment(bodyMesh);
+	particle2->SetRelativeLocation(FVector(-800.000000, 40.000000, 193.000000));
+	particle2->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle2->SetRelativeScale3D(FVector(2.000000, 1.000000, 1.000000));
+	// 두번째 바깥쪽
+	particle3 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle3"));
+	particle3->SetupAttachment(bodyMesh);
+	particle3->SetRelativeLocation(FVector(-800.000000, -80.000000, 193.000000));
+	particle3->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle3->SetRelativeScale3D(FVector(5.000000, 1.000000, 1.000000));
+	// 두번째 바깥쪽
+	particle4 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle4"));
+	particle4->SetupAttachment(bodyMesh);
+	particle4->SetRelativeLocation(FVector(-800.000000, 80.000000, 193.000000));
+	particle4->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle4->SetRelativeScale3D(FVector(5.000000, 1.000000, 1.000000));
+	// 가운데
+	particle5 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle5"));
+	particle5->SetupAttachment(bodyMesh);
+	particle5->SetRelativeLocation(FVector(-800.000000, 00.000000, 193.000000));
+	particle5->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle5->SetRelativeScale3D(FVector(4.000000, 2.000000, 2.000000));
+	// 제일 바깥쪽
+	particle6 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle6"));
+	particle6->SetupAttachment(bodyMesh);
+	particle6->SetRelativeLocation(FVector(-800.000000, -250.000000, 193.000000));
+	particle6->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle6->SetRelativeScale3D(FVector(8.000000, 0.5, 0.5));
+	// 제일 바깥쪽
+	particle7 = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle7"));
+	particle7->SetupAttachment(bodyMesh);
+	particle7->SetRelativeLocation(FVector(-800.000000, 250.000000, 193.000000));
+	particle7->SetRelativeRotation(FRotator(0.000000, 180.000000, 0.000000));
+	particle7->SetRelativeScale3D(FVector(8.000000, 0.5, 0.5));
+
+	particle3->SetAutoActivate(false);
+	particle4->SetAutoActivate(false);
+	particle5->SetAutoActivate(false);
+	particle6->SetAutoActivate(false);
+	particle7->SetAutoActivate(false);
+
 	// cube1, cube2 컴포넌트 등록
 	cube1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube1"));
 	cube1->SetupAttachment(GetCapsuleComponent());
@@ -55,7 +106,6 @@ AJBJPlayer::AJBJPlayer()
 
 	// 동적으로 파일(애셋) 을 로드하여 할당하기
 	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh(TEXT("StaticMesh'/Game/YJ/Mesh/JBJPlayerStaticMesh.JBJPlayerStaticMesh'"));
-	
 	// 데이터로드가 성공했다면
 	if (tempMesh.Succeeded())
 	{
@@ -63,8 +113,19 @@ AJBJPlayer::AJBJPlayer()
 		bodyMesh->SetStaticMesh(tempMesh.Object);
 	}
 
-	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh2(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
+	ConstructorHelpers::FObjectFinder<UParticleSystem> tempMesh3(TEXT("ParticleSystem'/Game/VigilanteContent/Vehicles/West_Fighter_F18C/FX/FX_Engine_01_F18C.FX_Engine_01_F18C'"));
+	if (tempMesh.Succeeded())
+	{
+		particle1->SetTemplate(tempMesh3.Object);
+		particle2->SetTemplate(tempMesh3.Object);
+		particle3->SetTemplate(tempMesh3.Object);
+		particle4->SetTemplate(tempMesh3.Object);
+		particle5->SetTemplate(tempMesh3.Object);
+		particle6->SetTemplate(tempMesh3.Object);
+		particle7->SetTemplate(tempMesh3.Object);
+	}
 
+	ConstructorHelpers::FObjectFinder<UStaticMesh> tempMesh2(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
 	if (tempMesh2.Succeeded())
 	{
 		cube1->SetStaticMesh(tempMesh2.Object);

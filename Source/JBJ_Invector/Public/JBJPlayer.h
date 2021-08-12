@@ -43,6 +43,23 @@ public:
 	// StaticMesh
 	UPROPERTY(EditAnywhere, Category = "BodyMesh", BlueprintReadWrite)
 		class UStaticMeshComponent* bodyMesh;
+
+	// 파티클시스템컴포넌트
+	UPROPERTY(EditAnywhere, Category = "Particle1", BlueprintReadWrite)
+		class UParticleSystemComponent* particle1;
+	UPROPERTY(EditAnywhere, Category = "Particle2", BlueprintReadWrite)
+		class UParticleSystemComponent* particle2;
+	UPROPERTY(EditAnywhere, Category = "Particle3", BlueprintReadWrite)
+		class UParticleSystemComponent* particle3;
+	UPROPERTY(EditAnywhere, Category = "Particle4", BlueprintReadWrite)
+		class UParticleSystemComponent* particle4;
+	UPROPERTY(EditAnywhere, Category = "Particle5", BlueprintReadWrite)
+		class UParticleSystemComponent* particle5;
+	UPROPERTY(EditAnywhere, Category = "Particle6", BlueprintReadWrite)
+		class UParticleSystemComponent* particle6;
+	UPROPERTY(EditAnywhere, Category = "Particle7", BlueprintReadWrite)
+		class UParticleSystemComponent* particle7;
+
 	// cube1
 	UPROPERTY(EditAnywhere, Category = "Cube1", BlueprintReadWrite)
 		class UStaticMeshComponent* cube1;

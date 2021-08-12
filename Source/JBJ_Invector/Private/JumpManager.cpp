@@ -4,6 +4,7 @@
 #include "JumpManager.h"
 #include "JBJPlayer.h"
 #include "PlayerMove.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values for this component's properties
 UJumpManager::UJumpManager()
@@ -24,6 +25,26 @@ void UJumpManager::BeginPlay()
 	
 }
 
+void UJumpManager::TurnOnParticles()
+{
+	// 파티클 시스템 다 켜기
+	me->particle3->SetActive(true);
+	me->particle4->SetActive(true);
+	me->particle5->SetActive(true);
+	me->particle6->SetActive(true);
+	me->particle7->SetActive(true);
+}
+
+void UJumpManager::TurnOffParticles()
+{
+	// 파티클 시스템 거의 끄기
+	me->particle3->SetActive(false);
+	me->particle4->SetActive(false);
+	me->particle5->SetActive(false);
+	me->particle6->SetActive(false);
+	me->particle7->SetActive(false);
+}
+
 
 // Called every frame
 void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -38,6 +59,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 		{
 			me->playerMove->section = 1;
 			check = 1;
+			UJumpManager::TurnOnParticles();
 		}
 	}
 
@@ -185,6 +207,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			me->playerMove->section = 0;
 			me->playerMove->jumpSection += 1;
 			check = 17;
+			UJumpManager::TurnOffParticles();
 		}
 	}
 	/// <summary>
@@ -197,6 +220,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 		{
 			me->playerMove->section = 1;
 			check = 18;
+			UJumpManager::TurnOnParticles();
 		}
 	}
 
@@ -360,6 +384,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			me->playerMove->section = 0;
 			me->playerMove->jumpSection += 1;
 			check = 36;
+			UJumpManager::TurnOffParticles();
 		}
 	}
 	/// <summary>
@@ -371,6 +396,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 		{
 			me->Jump();
 			check = 37;
+			UJumpManager::TurnOnParticles();
 		}
 	}
 
@@ -570,6 +596,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			me->playerMove->section = 0;
 			me->playerMove->jumpSection += 1;
 			check = 59;
+			UJumpManager::TurnOffParticles();
 		}
 	}
 }

@@ -25,6 +25,10 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 public:
+	void TurnOnParticles();
+	void TurnOffParticles();
+
+public:
 	UPROPERTY()
 		float currentTime = 0;
 	UPROPERTY()
