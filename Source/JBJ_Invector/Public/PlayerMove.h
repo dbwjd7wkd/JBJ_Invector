@@ -108,6 +108,14 @@ public:
 	UPROPERTY()
 		FVector direction;
 
+
+	// 가속할 때 카메라 줌아웃 해줄 애셋설정
+	UPROPERTY(EditAnywhere, Category = CameraShake)
+		TSubclassOf<class UCameraShakeBase> cameraShake;
+
+	UPROPERTY()
+		class UCameraShakeBase* csInstance;
+
 	// camera shake
 	//UPROPERTY(EditAnywhere, Category = "JBJCameraShake", BlueprintReadWrite)
 	//	TSubclassOf<class UMatineeCameraShake> JBJCameraShake;

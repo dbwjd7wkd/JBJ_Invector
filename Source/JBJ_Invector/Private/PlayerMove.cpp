@@ -51,6 +51,7 @@ void UPlayerMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	PRINTLOG(TEXT("time: %f"), currentTime);
+	PRINTLOG(TEXT("speed: %f"), speed);
 	currentTime += DeltaTime;
 	//if (currentTime >= 274.390015)
 	//{
@@ -202,7 +203,7 @@ void UPlayerMove::DKey()
 	{
 		if (boundary >= 1)
 		{
-			myA = false;
+			myD = false;
 			return;
 		}
 		boundary++;
@@ -343,6 +344,14 @@ void UPlayerMove::AccelerateHorizontally()
 	//float dy = me->GetTransform().GetRelativeTransform(dTransform).GetLocation().Y;
 	//direction = FVector(0, dy, 0);
 	//PRINTLOG(TEXT("x:%d y:%d z:%d"), direction.X, direction.Y, direction.Z);
+
+	// 앞으로도 가속하는 것처럼 보이게 카메라 줌아웃 해주자
+	if (csInstance)
+	{
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StopCameraShake(csInstance, true);
+		csInstance = nullptr;
+	}
+	csInstance = GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(cameraShake);
 
 	// 움직이는 방향으로 몸체 방향 돌리기
 	UPlayerMove::RotateToTarget();
