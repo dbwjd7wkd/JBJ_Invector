@@ -33,6 +33,9 @@ public:
 		class UBoxComponent* boxCompPerfect;
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
+		class UBoxComponent* boxCompPerfect2;
+
+	UPROPERTY(VisibleAnywhere, Category = "Component")
 		class UBoxComponent* boxCompGreat;
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")

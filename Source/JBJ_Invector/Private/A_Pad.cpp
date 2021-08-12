@@ -20,6 +20,8 @@ AA_Pad::AA_Pad()
 	RootComponent = boxComp;
 	boxCompPerfect = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionPerfect"));
 	boxCompPerfect->SetupAttachment(boxComp);
+	boxCompPerfect2 = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionPerfect2"));
+	boxCompPerfect2->SetupAttachment(boxComp);
 	boxCompGreat = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionGreat"));
 	boxCompGreat->SetupAttachment(boxComp);
 	boxCompGreat2 = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollisionGreat2"));
@@ -39,6 +41,7 @@ void AA_Pad::BeginPlay()
 	Super::BeginPlay();
 
 	boxCompPerfect->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionPerfect);
+	boxCompPerfect2->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionPerfect);
 	boxCompGreat->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionGreat);
 	boxCompGreat2->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionGreat);
 	boxCompBad->OnComponentBeginOverlap.AddDynamic(this, &AA_Pad::OnCollisionBad);
