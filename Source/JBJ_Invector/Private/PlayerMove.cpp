@@ -168,7 +168,7 @@ void UPlayerMove::AKey()
 	aa = true;
 	myA = true;
 	PRINTLOG(TEXT("A"));
-
+	UGameplayStatics::PlaySound2D(GetWorld(), adSound);
 	if (section == 1)
 	{
 		if (boundary <= -1)
@@ -198,7 +198,7 @@ void UPlayerMove::DKey()
 	dd = true;
 	myD = true;
 	PRINTLOG(TEXT("D"));
-
+	UGameplayStatics::PlaySound2D(GetWorld(), adSound);
 	if (section == 1)
 	{
 		if (boundary >= 1)

@@ -89,7 +89,8 @@ void ADown_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp, cl
 			{
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
 				myGameMode->SetScorePerfect();
-
+				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionFactory, GetActorLocation() + FVector(0.0f, 0.0f, -270.f));
+				UGameplayStatics::PlaySound2D(GetWorld(), playSound);
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				player->playerMove->down = false;
 			}
@@ -108,7 +109,8 @@ void ADown_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, clas
 			{
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
 				myGameMode->SetScoreGreat();
-
+				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionFactory, GetActorLocation() + FVector(-50.0f, 0.0f, -300.f));
+				UGameplayStatics::PlaySound2D(GetWorld(), playSound);
 				PRINTLOG(TEXT("Good!!!"));
 				player->playerMove->down = false;
 			}
@@ -127,7 +129,8 @@ void ADown_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, class 
 			{
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
 				myGameMode->SetScoreBad();
-
+				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionFactory, GetActorLocation() + FVector(-50.0f, 0.0f, -300.f));
+				UGameplayStatics::PlaySound2D(GetWorld(), playSound);
 				PRINTLOG(TEXT("Bad T.T"));
 				player->playerMove->down = false;
 			}

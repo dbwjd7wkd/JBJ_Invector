@@ -68,7 +68,7 @@ public:
 
 	// 필요속성 : 이동속도
 	UPROPERTY(EditAnywhere, Category = "Setting", BlueprintReadWrite)
-	float speed = 1500;
+	float speed = 500;
 	float speed2 = 10;
 
 	// 방향키 입력 기억을 위한 속성
@@ -123,6 +123,9 @@ public:
 private:
 	UPROPERTY()
 	class AJBJPlayer* me;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+		class USoundBase* adSound;
 
 	//UPROPERTY(VisibleAnywhere, Category = RotTriangle)
 	//	class ARotTriangle* m_triangle;

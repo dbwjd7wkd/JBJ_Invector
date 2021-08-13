@@ -64,6 +64,13 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Setting")
 		float speed = 1500;
 
+public:
+	UPROPERTY(EditAnywhere, Category = "Explosion")
+		class UParticleSystem* explosionFactory;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+		class USoundBase* playSound;
+
 	UPROPERTY()
 		class AActor* target;
 

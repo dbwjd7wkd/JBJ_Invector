@@ -90,7 +90,7 @@ void ASpaceBar_Pad::OnCollisionPerfect(class UPrimitiveComponent* OverlappedComp
 			{
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("PerFect!!!!!!!!"), 100, 100));
 				myGameMode->SetScorePerfect();
-
+				UGameplayStatics::PlaySound2D(GetWorld(), playSound);
 				PRINTLOG(TEXT("PerFect!!!!!!!!"));
 				overlapCheck = true;
 				player->playerMove->spaceBar = false;
@@ -110,7 +110,7 @@ void ASpaceBar_Pad::OnCollisionGreat(class UPrimitiveComponent* OverlappedComp, 
 			{
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Good!!!"), 100, 100));
 				myGameMode->SetScoreGreat();
-
+				UGameplayStatics::PlaySound2D(GetWorld(), playSound);
 				PRINTLOG(TEXT("Good!!!"));
 				overlapCheck = true;
 				player->playerMove->spaceBar = false;
@@ -130,7 +130,7 @@ void ASpaceBar_Pad::OnCollisionBad(class UPrimitiveComponent* OverlappedComp, cl
 			{
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Bad T.T"), 100, 100));
 				myGameMode->SetScoreBad();
-
+				UGameplayStatics::PlaySound2D(GetWorld(), playSound);
 				PRINTLOG(TEXT("Bad T.T"));
 				overlapCheck = true;
 				player->playerMove->spaceBar = false;

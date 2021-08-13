@@ -55,7 +55,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 0)
 	{
-		if (currentTime >= 70.266006 -0.4)
+		if (currentTime >= 70.266006 -0.3)
 		{
 			me->playerMove->section = 1;
 			check = 1;
@@ -65,7 +65,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 1)
 	{
-		if (currentTime >= 71.783089 -0.4)
+		if (currentTime >= 71.783089 -0.3)
 		{
 			me->Jump();
 			check = 2;
@@ -75,7 +75,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 2)
 	{
-		if (currentTime >= 72.783363 -0.4)
+		if (currentTime >= 72.783363 -0.3)
 		{
 			me->Jump();
 			check = 3;
@@ -84,7 +84,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 3)
 	{
-		if (currentTime >= 73.766937 -0.4)
+		if (currentTime >= 73.766937 -0.3)
 		{
 			me->Jump();
 			check = 4;
@@ -93,7 +93,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 4)
 	{
-		if (currentTime >= 74.250381 -0.4)
+		if (currentTime >= 74.250381 -0.3)
 		{
 			me->Jump();
 			check = 5;
@@ -102,7 +102,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 5)
 	{
-		if (currentTime >= 74.750488 -0.4)
+		if (currentTime >= 74.750488 -0.3)
 		{
 			me->Jump();
 			check = 6;
@@ -111,7 +111,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 6)
 	{
-		if (currentTime >= 75.750717 -0.4)
+		if (currentTime >= 75.750717 -0.3)
 		{
 			me->Jump();
 			check = 7;
@@ -120,7 +120,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 7)
 	{
-		if (currentTime >= 76.717590 -0.4)
+		if (currentTime >= 76.717590 -0.3)
 		{
 			me->Jump();
 			check = 8;
@@ -129,7 +129,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 8)
 	{
-		if (currentTime >= 77.701202 -0.4)
+		if (currentTime >= 77.701202 -0.3)
 		{
 			me->Jump();
 			check = 9;
@@ -138,7 +138,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 9)
 	{
-		if (currentTime >= 78.184639 -0.4)
+		if (currentTime >= 78.184639 -0.3)
 		{
 			me->Jump();
 			check = 10;
@@ -147,7 +147,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 10)
 	{
-		if (currentTime >= 78.684761 -0.4)
+		if (currentTime >= 78.684761 -0.3)
 		{
 			me->Jump();
 			check = 11;
@@ -156,7 +156,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 11)
 	{
-		if (currentTime >= 79.651642 -0.4)
+		if (currentTime >= 79.651642 -0.3)
 		{
 			me->Jump();
 			check = 12;
@@ -165,7 +165,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 12)
 	{
-		if (currentTime >= 80.668541 -0.4)
+		if (currentTime >= 80.668541 -0.3)
 		{
 			me->Jump();
 			check = 13;
@@ -174,7 +174,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 13)
 	{
-		if (currentTime >= 81.618820 -0.4)
+		if (currentTime >= 81.618820 -0.3)
 		{
 			me->Jump();
 			check = 14;
@@ -183,7 +183,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 14)
 	{
-		if (currentTime >= 82.085640 -0.4)
+		if (currentTime >= 82.085640 -0.3)
 		{
 			me->Jump();
 			check = 15;
@@ -192,7 +192,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 15)
 	{
-		if (currentTime >= 82.569115 -0.4)
+		if (currentTime >= 82.569115 -0.3)
 		{
 			me->Jump();
 			check = 16;
@@ -202,7 +202,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 16)
 	{
-		if (currentTime >= 83.052605 -0.4)
+		if (currentTime >= 83.052605 -0.3)
 		{
 			me->playerMove->section = 0;
 			me->playerMove->jumpSection += 1;
@@ -216,7 +216,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 17)
 	{
-		if (currentTime >= 117.504868 -0.4)
+		if (currentTime >= 117.504868 -0.3)
 		{
 			me->playerMove->section = 1;
 			check = 18;
@@ -226,7 +226,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 18)
 	{
-		if (currentTime >= 119.005928 -0.4)
+		if (currentTime >= 119.005928 -0.3)
 		{
 			me->Jump();
 			check = 19;
@@ -235,7 +235,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 19)
 	{
-		if (currentTime >= 119.989471 -0.4)
+		if (currentTime >= 119.989471 -0.3)
 		{
 			me->Jump();
 			check = 20;
@@ -244,7 +244,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 20)
 	{
-		if (currentTime >= 120.989685 -0.4)
+		if (currentTime >= 120.989685 -0.3)
 		{
 			me->Jump();
 			check = 21;
@@ -253,7 +253,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 21)
 	{
-		if (currentTime >= 121.473167 -0.4)
+		if (currentTime >= 121.473167 -0.3)
 		{
 			me->Jump();
 			check = 22;
@@ -262,7 +262,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 22)
 	{
-		if (currentTime >= 121.973274 -0.4)
+		if (currentTime >= 121.973274 -0.3)
 		{
 			me->Jump();
 			check = 23;
@@ -271,7 +271,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 23)
 	{
-		if (currentTime >= 122.973579 -0.4)
+		if (currentTime >= 122.973579 -0.3)
 		{
 			me->Jump();
 			check = 24;
@@ -280,7 +280,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 24)
 	{
-		if (currentTime >= 123.923813 -0.4)
+		if (currentTime >= 123.923813 -0.3)
 		{
 			me->Jump();
 			check = 25;
@@ -289,7 +289,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 25)
 	{
-		if (currentTime >= 124.940704 -0.4)
+		if (currentTime >= 124.940704 -0.3)
 		{
 			me->Jump();
 			check = 26;
@@ -298,7 +298,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 26)
 	{
-		if (currentTime >= 125.424149 -0.4)
+		if (currentTime >= 125.424149 -0.3)
 		{
 			me->Jump();
 			check = 27;
@@ -307,7 +307,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 27)
 	{
-		if (currentTime >= 125.890923 -0.4)
+		if (currentTime >= 125.890923 -0.3)
 		{
 			me->Jump();
 			check = 28;
@@ -316,7 +316,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 28)
 	{
-		if (currentTime >= 126.907921 -0.4)
+		if (currentTime >= 126.907921 -0.3)
 		{
 			me->Jump();
 			check = 29;
@@ -325,7 +325,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 29)
 	{
-		if (currentTime >= 127.841484 -0.4)
+		if (currentTime >= 127.841484 -0.3)
 		{
 			me->Jump();
 			check = 30;
@@ -334,7 +334,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 30)
 	{
-		if (currentTime >= 128.841728 -0.4)
+		if (currentTime >= 128.841728 -0.3)
 		{
 			me->Jump();
 			check = 31;
@@ -343,7 +343,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 31)
 	{
-		if (currentTime >= 129.308411 -0.4)
+		if (currentTime >= 129.308411 -0.3)
 		{
 			me->Jump();
 			check = 32;
@@ -352,7 +352,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 32)
 	{
-		if (currentTime >= 129.791641 -0.4)
+		if (currentTime >= 129.791641 -0.3)
 		{
 			me->Jump();
 			check = 33;
@@ -361,7 +361,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 33)
 	{
-		if (currentTime >= 131.024918 -0.4)
+		if (currentTime >= 131.024918 -0.3)
 		{
 			me->Jump();
 			check = 34;
@@ -370,7 +370,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 34)
 	{
-		if (currentTime >= 131.808228 -0.4)
+		if (currentTime >= 131.808228 -0.3)
 		{
 			me->Jump();
 			check = 35;
@@ -379,7 +379,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 35)
 	{
-		if (currentTime >= 132.8 -0.4)
+		if (currentTime >= 132.8 -0.3)
 		{
 			me->playerMove->section = 0;
 			me->playerMove->jumpSection += 1;
@@ -390,11 +390,12 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 	/// <summary>
 	/// ///////////////////////////////////////////////////////////
 	/// </summary>
+	
 	if (check == 36)
 	{
-		if (currentTime >= 244.862625 -0.4)
+		if (currentTime >= 244.562625 - 0.3)
 		{
-			me->Jump();
+			me->playerMove->section = 1;
 			check = 37;
 			UJumpManager::TurnOnParticles();
 		}
@@ -402,16 +403,17 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 37)
 	{
-		if (currentTime >= 245.329193 -0.4)
+		if (currentTime >= 244.862625 -0.3)
 		{
 			me->Jump();
 			check = 38;
+			UJumpManager::TurnOnParticles();
 		}
 	}
 
 	if (check == 38)
 	{
-		if (currentTime >= 245.829117 -0.4)
+		if (currentTime >= 245.329193 -0.3)
 		{
 			me->Jump();
 			check = 39;
@@ -420,7 +422,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 39)
 	{
-		if (currentTime >= 246.345657 -0.4)
+		if (currentTime >= 245.829117 -0.3)
 		{
 			me->Jump();
 			check = 40;
@@ -429,7 +431,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 40)
 	{
-		if (currentTime >= 246.828934 -0.4)
+		if (currentTime >= 246.345657 -0.3)
 		{
 			me->Jump();
 			check = 41;
@@ -438,7 +440,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 41)
 	{
-		if (currentTime >= 247.295639 -0.4)
+		if (currentTime >= 246.828934 -0.3)
 		{
 			me->Jump();
 			check = 42;
@@ -447,7 +449,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 42)
 	{
-		if (currentTime >= 247.828873 -0.4)
+		if (currentTime >= 247.295639 -0.3)
 		{
 			me->Jump();
 			check = 43;
@@ -456,7 +458,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 43)
 	{
-		if (currentTime >= 248.795349 -0.4)
+		if (currentTime >= 247.828873 -0.3)
 		{
 			me->Jump();
 			check = 44;
@@ -465,7 +467,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 44)
 	{
-		if (currentTime >= 249.295258 -0.4)
+		if (currentTime >= 248.795349 -0.3)
 		{
 			me->Jump();
 			check = 45;
@@ -474,7 +476,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 45)
 	{
-		if (currentTime >= 250.295074 -0.4)
+		if (currentTime >= 249.295258 -0.3)
 		{
 			me->Jump();
 			check = 46;
@@ -483,7 +485,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 46)
 	{
-		if (currentTime >= 250.761642 -0.4)
+		if (currentTime >= 250.295074 -0.3)
 		{
 			me->Jump();
 			check = 47;
@@ -492,7 +494,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 47)
 	{
-		if (currentTime >= 251.761444 -0.4)
+		if (currentTime >= 250.761642 -0.3)
 		{
 			me->Jump();
 			check = 48;
@@ -501,7 +503,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 48)
 	{
-		if (currentTime >= 252.244675 -0.4)
+		if (currentTime >= 251.761444 -0.3)
 		{
 			me->Jump();
 			check = 49;
@@ -510,7 +512,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 49)
 	{
-		if (currentTime >= 252.711227 -0.4)
+		if (currentTime >= 252.244675 -0.3)
 		{
 			me->Jump();
 			check = 50;
@@ -519,7 +521,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 50)
 	{
-		if (currentTime >= 253.194473 -0.4)
+		if (currentTime >= 252.711227 -0.3)
 		{
 			me->Jump();
 			check = 51;
@@ -528,7 +530,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 51)
 	{
-		if (currentTime >= 253.727676 -0.4)
+		if (currentTime >= 253.194473 -0.3)
 		{
 			me->Jump();
 			check = 52;
@@ -537,7 +539,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 52)
 	{
-		if (currentTime >= 254.244232 -0.4)
+		if (currentTime >= 253.727676 -0.3)
 		{
 			me->Jump();
 			check = 53;
@@ -546,7 +548,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 53)
 	{
-		if (currentTime >= 254.710785 -0.4)
+		if (currentTime >= 254.244232 -0.3)
 		{
 			me->Jump();
 			check = 54;
@@ -555,7 +557,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 54)
 	{
-		if (currentTime >= 255.743958 -0.4)
+		if (currentTime >= 254.710785 -0.3)
 		{
 			me->Jump();
 			check = 55;
@@ -564,7 +566,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 55)
 	{
-		if (currentTime >= 256.193863 -0.4)
+		if (currentTime >= 255.743958 -0.3)
 		{
 			me->Jump();
 			check = 56;
@@ -573,7 +575,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 56)
 	{
-		if (currentTime >= 257.193726 -0.4)
+		if (currentTime >= 256.193863 -0.3)
 		{
 			me->Jump();
 			check = 57;
@@ -582,7 +584,7 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 57)
 	{
-		if (currentTime >= 257.626953 -0.4)
+		if (currentTime >= 257.193726 -0.3)
 		{
 			me->Jump();
 			check = 58;
@@ -591,12 +593,42 @@ void UJumpManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (check == 58)
 	{
-		if (currentTime >= 260.109772 -0.4)
+		if (currentTime >= 257.626953 -0.3)
+		{
+			me->Jump();
+			check = 59;
+		}
+	}
+
+	if (check == 59)
+	{
+		if (currentTime >= 260.109772 -0.3)
 		{
 			me->playerMove->section = 0;
 			me->playerMove->jumpSection += 1;
-			check = 59;
+			check = 60;
 			UJumpManager::TurnOffParticles();
+		}
+	}
+
+	if (check == 60)
+	{
+		if (currentTime >= 260.562625 - 0.3)
+		{
+			me->Jump();
+			check = 61;
+			
+		}
+	}
+
+	if (check == 60)
+	{
+		if (currentTime >= 261 - 0.3)
+		{
+			me->playerMove->section = 0;
+			me->playerMove->jumpSection += 1;
+			check = 61;
+			
 		}
 	}
 }
